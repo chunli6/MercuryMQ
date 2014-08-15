@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<title>Mercury MQ</title>
+	
+	<link rel="shortcut icon" href="/favicon.ico"/>
+
+	<link rel="stylesheet" type="text/css" href="../site/css/global.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/3dParty/rs-plugin/css/pi.settings.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/typo.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/3dParty/colorbox/colorbox.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/portfolio.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/slider.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/counters.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/social.css"/>
+
+	<!-- JQUERY -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<!-- BOOTSTRAP -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<!--Fonts-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic'
+		  rel='stylesheet' type='text/css'/>
+
+	<!--Fonts with Icons-->
+	<link rel="stylesheet" href="../site/3dParty/fontello/css/fontello.css"/>
+
+</head>
+
+<body>
+<!--MODALS-->
+<div class="modal fade" id="orderExample" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	<div class="modal-body">
+    	  <img src="../site/img/orderExample.png" />
+    	</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="order" aria-hidden="true">
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h4 class='modal-title'>Order: {{selectedVenue.name}}</h4>
+      </div>
+      <div class='modal-body' style="text-align:center">
+        <input ng-model="newOrder.from" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="phone number (ex: 201-555-1234)" /><br /><br />
+        <input ng-model="newOrder.address" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="address (ex: 11 Main Street, Ridgewood, NJ)" /><br /><br />
+        <input ng-model="newOrder.promo" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="promo code (optional)" /><br /><br />
+        <textarea ng-model="newOrder.order" class='form-control' style="width:90%;margin-left:auto;margin-right:auto" name='' rows='5' placeholder="order"></textarea>
+      </div>
+      <div class='modal-footer'>
+        <button class='btn btn-default' data-dismiss='modal' type='button'>Cancel</button>
+        <button class='btn btn-primary' data-dismiss='modal' type='button' ng-click="order()">order</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Header -->
+<div class="pi-header">
+
+<!-- Header row -->
+<div class="pi-section-w pi-section-dark">
+	<div class="pi-section pi-row-sm">
+
+		<!-- Social icons -->
+		<div class="pi-row-block pi-pull-right pi-hidden-2xs">
+			<ul class="pi-social-icons pi-stacked pi-jump pi-full-height pi-bordered pi-small pi-colored-bg clearFix">
+				<li><a target="_blank" href="https://www.twitter.com/mercurymq" class="pi-social-icon-twitter"><i class="icon-twitter"></i></a></li>
+				<li><a target="_blank" href="https://www.facebook.com/MercuryMQ" class="pi-social-icon-facebook"><i class="icon-facebook"></i></a></li>
+				<li><a target="_blank" href="http://instagram.com/mercurymq201" class="pi-social-icon-instagram"><i class="icon-instagram"></i></a></li>
+			</ul>
+		</div>
+		<!-- End social icons -->
+
+
+	</div>
+</div>
+<!-- End header row -->
+
+<div class="pi-header-sticky" class="navbar navbar-fixed-top">
+<!-- Header row -->
+<div class="pi-section-w pi-section-white pi-shadow-bottom pi-row-reducible">
+<div class="pi-section pi-row-lg">
+
+<!-- Logo -->
+<div class="pi-row-block pi-row-block-logo">
+	<a href="/"><img src="../site/img/logos/logo_copy.png" alt=""></a>
+</div>
+<!-- End logo -->
+
+<!-- Text -->
+<div class="pi-row-block pi-row-block-txt pi-hidden-2xs"></div>
+<!-- End text -->
+
+<!-- Menu -->
+<div class="pi-row-block pi-pull-right">
+	<ul class="pi-simple-menu pi-has-hover-border pi-full-height pi-hidden-sm">
+		<li class="active"><a href="/"><span>Home</span></a>
+ 			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+				<li><a href="index.html"><span>Home 1</span></a></li>
+				<li><a href="home-home-2.html"><span>Home 2</span></a></li>
+				<li><a href="home-home-3.html"><span>Home 3</span></a></li>
+			</ul> 
+		</li>
+		<li class=""><a href="/site/about"><span>About</span></a>
+		</li>
+		<li class="">
+			<a href="faq.html"><span>FAQ</span></a>
+		</li>
+		<li class="">
+			<a href="#"><span>Sign In</span></a>
+		</li>
+	</ul>
+</div>
+<!-- End menu -->
+
+<!-- Mobile menu button -->
+<div class="pi-row-block pi-pull-right pi-hidden-lg-only pi-hidden-md-only">
+	<button class="btn pi-btn pi-mobile-menu-toggler" data-target="#pi-main-mobile-menu">
+		<i class="icon-menu pi-text-center"></i>
+	</button>
+</div>
+<!-- End mobile menu button -->
+
+		<!-- Mobile menu -->
+		<div id="pi-main-mobile-menu" class="pi-section-menu-mobile-w pi-section-dark">
+			<div class="pi-section-menu-mobile">
+
+				<!-- Search form -->
+				<form class="form-inline pi-search-form-wide ng-pristine ng-valid" role="form">
+					<div class="pi-input-with-icon">
+						<div class="pi-input-icon"><i class="icon-search-1"></i></div>
+						<input type="text" class="form-control pi-input-wide" placeholder="Search..">
+					</div>
+				</form>
+				<!-- End search form -->
+
+				<ul class="pi-menu-mobile pi-items-have-borders pi-menu-mobile-dark">
+					<li class="active"><a href="index.html"><span>Home</span></a>
+						<ul>
+							<li><a href="index.html"><span>Home 1</span></a></li>
+							<li><a href="home-home-2.html"><span>Home 2</span></a></li>
+						</ul>
+					</li>
+					<li><a href="headers-headers-light.html"><span>Features</span></a>
+						<ul>
+							<li><a href="headers-headers-light.html"><span>Headers</span></a>
+								<ul>
+									<li><a href="headers-headers-light.html"><span>Headers Light</span></a></li>
+									<li><a href="headers-headers-dark.html"><span>Headers Dark</span></a></li>
+									<li><a href="headers-headers-base.html"><span>Headers Base</span></a></li>
+								</ul>
+							</li>
+							<li><a href="footers-footers-light.html"><span>Footers</span></a>
+								<ul>
+									<li><a href="footers-footers-light.html"><span>Footers Light</span></a></li>
+									<li><a href="footers-footers-dark.html"><span>Footers Dark</span></a></li>
+									<li><a href="footers-footers-base.html"><span>Footers Base</span></a></li>
+								</ul>
+							</li>
+							<li><a href="utility-utility-alignment.html"><span>Utility</span></a>
+								<ul>
+									<li><a href="utility-utility-grid.html"><span>Utility grid</span></a></li>
+									<li><a href="utility-utility-visibility.html"><span>Utility visibility</span></a></li>
+									<li><a href="utility-utility-alignment.html"><span>Utility alignment</span></a></li>
+								</ul>
+							</li>
+							<li><a href="typo.html"><span>Typography</span></a></li>
+							<li><a href="animations.html"><span>Animations</span></a></li>
+							<li><a href="icons.html"><span>Icons</span></a></li>
+						</ul>
+					</li>
+					<li><a href="about-about-1.html"><span>Templates</span></a>
+						<ul>
+							<li><a href="about-about-1.html"><span>About Company 1</span></a></li>
+							<li><a href="sign-up.html"><span>Sign Up</span></a></li>
+							<li><a href="404.html"><span>404</span></a></li>
+							<li><a href="500.html"><span>500</span></a></li>
+						</ul>
+					</li>
+					<li><a href="titlebars-small-breadcrumb-right.html"><span>Elements</span></a>
+						<ul>
+							<li><a href="titlebars-small-breadcrumb-right.html"><span>Titlebars - Breadcrumb Right</span></a></li>
+							<li><a href="titlebars-small-breadcrumb-top.html"><span>Titlebars - Breadcrumb Top</span></a></li>
+							<li><a href="testimonials-simple.html"><span>Simple</span></a></li>
+							<li><a href="testimonials-photo.html"><span>With Photo</span></a></li>
+						</ul>
+					</li>
+					<li><a href="docs-docs.html"><span>Docs</span></a>
+						<ul>
+							<li><a href="docs-theme-structure.html"><span>Theme Structure</span></a></li>
+							<li><a href="docs-theme-settings.html"><span>Theme Settings</span></a></li>
+						</ul>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+		<!-- End mobile menu -->
+
+</div>
+</div>
+<!-- End header row -->
+</div>
+
+</div>
+<!-- End header -->
+
+<div id="page">
+
+
+<!-- - - - - - - - - - SECTION - - - - - - - - - -->
+
+<div style="background:rgba(230, 230, 230, 0.9)" class="pi-section-w pi-section-white piCounter">
+	<div class="pi-section pi-padding-bottom-30">
+
+
+		
+		<!-- Row -->
+		<div class="pi-row">
+		
+		  <!-- Team member -->
+		  <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:30px;background:#fff;font-family:Arial;font-height:11px;min-height:280px">
+		    
+		    <div style="background:url(../site/img/test-image.jpg) no-repeat; background-size: cover;width:100%;height:320px;margin-bottom:60px">
+	<div class="pi-section pi-padding-top-50 pi-padding-bottom-30">
+		
+		<!-- Row -->
+		<div class="pi-row">
+			
+			<!-- Col 9 -->
+			<div class="pi-col-sm-9 pi-center-text-xs">
+				<h3 class="pi-weight-300" style="color:#fff">
+					Want Food Delivered to Your Door?
+				</h3>
+				
+				<p class="lead-16">
+					Sign in and receive your order in just a few minutes.
+				</p>
+				<a href="#" class="btn pi-btn-base pi-btn-no-border pi-btn-big">
+					Sign In
+				</a>
+			</div>
+			<!-- End col 9 -->
+
+			<div class="pi-clearfix pi-visible-xs"></div>
+		</div>
+		<!-- End row -->
+
+	</div>
+		    
+		    </div>
+
+
+		<hr style="margin-left:auto;margin-right:auto;margin-bottom:30px" />
+		
+
+		    <h2 class="h4 pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-bottom-30">
+			  Popular Venues
+		    </h2>
+		
+		<!-- Row -->
+		<div class="pi-row">
+			
+			<!-- Col 3 -->
+			<div class="pi-col-xs-6 pi-col-sm-3">
+			
+				<!-- Team member -->
+					<div class="pi-img-w pi-img-round-corners" style="padding:20px;background:#f9f9f9;border:1px solid #ededed;font-family:Arial;font-height:11px;min-height:280px">
+						<img align="left" style="border:none;max-width:90px;padding-right:10px" src="../site/img/venues/chipotle.png" alt="">
+						<br /><br />Chipotle's menu consists of five items: burritos, fajita burritos, burritos bowls, tacos and salads. Chipotle elevates basic raw ingredients into food that's richer through their recipes and cooking techniques.
+						<div class="pi-img-overlay pi-img-overlay-darker">
+							<div class="pi-caption-centered">
+								<div>
+
+
+									<a href="" data-toggle="modal" data-target="#order">
+										<span class="pi-caption-icon pi-caption-icon-large pi-caption-scale" style="font-size:14px">Order</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				<!-- End team member -->
+				
+			</div>
+			<!-- End col 3 -->
+			
+			<!-- Col 3 -->			
+			<div class="pi-col-xs-6 pi-col-sm-3">
+			
+				<!-- Team member -->
+					<div class="pi-img-w pi-img-round-corners" style="padding:20px;background:#f9f9f9;border:1px solid #ededed;font-family:Arial;font-height:11px;min-height:280px">
+						<img align="left" style="border:none;max-width:90px;padding-right:10px" src="../site/img/venues/panera.png" alt="">
+						<br /><br />Panera offers a variety on their menu of sandwiches, soups and salads. Treat your taste buds to freshly baked flatbread, layered with fresh, bold ingredients. Have Panera delivered to your door and enjoy!
+
+						<div class="pi-img-overlay pi-img-overlay-darker">
+							<div class="pi-caption-centered">
+								<div>
+									<a href="#">
+										<span class="pi-caption-icon pi-caption-icon-large pi-caption-scale" style="font-size:14px">Order</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				<!-- End team member -->
+				
+			</div>
+			<!-- End col 3 -->
+
+			<div class="pi-clearfix pi-visible-xs"></div>
+
+			<!-- Col 3 -->	
+			<div class="pi-col-xs-6 pi-col-sm-3">
+			
+				<!-- Team member -->
+					<div class="pi-img-w pi-img-round-corners" style="padding:20px;background:#f9f9f9;border:1px solid #ededed;font-family:Arial;font-height:11px;min-height:280px">
+						<img align="left" style="border:none;max-width:90px;padding-right:10px" src="../site/img/venues/cvs.png" alt="">
+						<br /><br />CVS offers a wide range of products from paper towels to sunscreen. Feeling sick and need some Dayquil? No need to get up, just order from Mercury MQ. Need drinks and chips for a party? We've got you covered.
+						
+						<div class="pi-img-overlay pi-img-overlay-darker">
+							<div class="pi-caption-centered">
+								<div>
+									<a href="#">
+										<span class="pi-caption-icon pi-caption-icon-large pi-caption-scale" style="font-size:14px">Order</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				<!-- End team member -->
+				
+			</div>
+			<!-- End col 3 -->
+			
+			<!-- Col 3 -->	
+			<div class="pi-col-xs-6 pi-col-sm-3">
+			
+				<!-- Team member -->
+					<div class="pi-img-w pi-img-round-corners" style="padding:20px;background:#f9f9f9;border:1px solid #ededed;font-family:Arial;font-height:11px;min-height:280px">
+						<img align="left" style="border:none;max-width:90px;padding-right:10px" src="../site/img/venues/chipotle.png" alt="">
+						<br /><br />Chipotle's menu consists of five items: burritos, fajita burritos, burritos bowls, tacos and salads. Chipotle elevates basic raw ingredients into food that's richer through their recipes and cooking techniques.
+						
+						<div class="pi-img-overlay pi-img-overlay-darker">
+							<div class="pi-caption-centered">
+								<div>
+									<a href="#">
+										<span class="pi-caption-icon pi-caption-icon-large pi-caption-scale" style="font-size:14px">Order</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				<!-- End team member -->
+				
+			</div>	
+			<!-- End col 3 -->
+			
+		</div>
+		<!-- End row -->
+
+					
+						
+		  </div>
+		  <!-- End team member -->
+		
+		
+		</div>
+
+		
+		<!-- Row -->
+		<div class="pi-row" style="margin-top:60px"> 
+		
+		  <!-- Team member -->
+		  <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:30px;background:#fff;font-family:Arial;font-height:11px;min-height:280px">
+		
+		<h2 class="h4 pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-bottom-30">
+			What We Offer
+		</h2>
+		
+		<div class="pi-row pi-grid-big-margins">
+			<div class="pi-col-xs-4 pi-padding-bottom-20" style="padding:50px">
+				<div class="pi-icon-box-vertical pi-icon-box-vertical-icon-bigger pi-text-center">
+					<div class="pi-icon-box-icon pi-icon-box-icon-circle pi-icon-box-icon-base" style="background: #77DD77;">
+						<img src="../site/img/pizza.png" style="width:80px;height:auto;margin-right:10px;max-height:150px">
+						<!-- <img src="img_external/icons/80px/monitor-lined-white.png" alt=""> -->
+					</div>
+					<h5 class="pi-weight-700 pi-uppercase pi-letter-spacing"><a href="#" class="pi-link-dark">The Delivery Board</a></h5>
+					<p class="pi-margin-bottom-10">
+						Have you ever wanted food delivered from a restaurant that doesn't deliver? MercuryMQ will deliver food directly to your door from select local restaurants. Simply text your order, your address, and the restaurant that you would like to order from to 201-383-4611 and we will deliver your food. MercuryMQ Delivery costs only $6 per order, and your first order is free!
+					</p>
+				</div>
+			</div>
+			
+			<div class="pi-col-xs-4 pi-padding-bottom-20" style="padding:50px">
+				<div class="pi-icon-box-vertical pi-icon-box-vertical-icon-bigger pi-text-center">
+					<div class="pi-icon-box-icon pi-icon-box-icon-circle pi-icon-box-icon-base" style="background: #5ED5A4;">
+						<img src="/site/img_external/icons/80px/tablet-mobile-lined-white.png" alt="">
+					</div>
+					<h5 class="pi-weight-700 pi-uppercase pi-letter-spacing"><a href="#" class="pi-link-dark">How to Order</a></h5>
+					<p class="pi-margin-bottom-10">
+						Send a text message to <strong>201-383-4611</strong> with the following format: <br>
+						<ol style="text-align:center;width:60%;margin-left:auto;margin-right:auto">
+							<li>Restaurant Name</li>
+							<li>Your Address</li>
+							<li>Your Order</li>
+						</ol><br>
+						Be sure to include the numbers on the left when placing your order!
+					</p>
+					<p>
+						<a href="" data-toggle="modal" data-target="#orderExample">See an example<i class="icon-right-open-mini pi-icon-right"></i></a>
+					</p>
+				</div>
+			</div>
+			
+			<div class="pi-col-xs-4 pi-padding-bottom-20" style="padding:50px">
+				<div class="pi-icon-box-vertical pi-icon-box-vertical-icon-bigger pi-text-center">
+					<div class="pi-icon-box-icon pi-icon-box-icon-circle pi-icon-box-icon-base" style="background: #49C0C0">
+						<span>$</span>
+						<!-- <img src="img_external/icons/80px/cog-lined-white.png" alt=""> -->
+					</div>
+					<h5 class="pi-weight-700 pi-uppercase pi-letter-spacing"><a href="#" class="pi-link-dark">Save Money</a></h5>
+					<p class="pi-margin-bottom-10">
+						Ordering from MercuryMQ allows you to order from restaurants that don't deliver and 
+							you never have to pay an additional tip! A tip for a normal delivery driver is 15% 
+							($6 on a $40 order). Our flat rate is cheaper for delivery on large orders.
+					</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	</div>
+</div>
+
+<!-- - - - - - - - - - END SECTION - - - - - - - - - -->
+		
+
+
+<!-- - - - - - - - - - SECTION - - - - - - - - - -->
+
+<div class="pi-section-w pi-section-parallax">
+	<div class="pi-texture pi-section-overlay-base"></div>
+	<div class="pi-section pi-padding-bottom-30">
+		
+		<!-- Row -->
+		<div class="pi-row pi-grid-small-margins pi-text-center">
+			
+			<!-- Col 3 -->
+			<div class="pi-col-sm-4 pi-col-2xs-6 pi-padding-bottom-20">
+				<div class="pi-counter pi-counter-simple" data-count-from="0" data-count-to="127" data-easing="easeInCirc" data-duration="1000" data-frames-per-second="0">
+					<div class="pi-counter-count pi-counter-count-big pi-text-white pi-weight-300">
+					
+						<p>
+							<i class="icon-briefcase pi-icon pi-icon-big pi-text-white"></i>
+						</p>
+					
+						<div class="pi-counter-number">127</div>
+
+					</div>
+					<p>Restaurants</p>
+				</div>
+			</div>
+			<!-- End col 3 -->
+			
+			<!-- Col 3 -->
+			<div class="pi-col-sm-4 pi-col-2xs-6 pi-padding-bottom-20">
+				<div class="pi-counter pi-counter-simple" data-count-from="0" data-count-to="6" data-easing="easeInCirc" data-duration="2000" data-frames-per-second="10">
+					<div class="pi-counter-count pi-counter-count-big pi-text-white pi-weight-300">
+
+						<p>
+							<i class="icon-globe pi-icon pi-icon-big pi-text-white"></i>
+						</p>
+
+						$<span class="pi-counter-number">0</span>
+
+					</div>
+					<p>Per Delivery Order</p>
+				</div>
+			</div>
+			<!-- End col 3 -->
+			
+			<!-- Col 3 -->
+			<div class="pi-col-sm-4 pi-col-2xs-6 pi-padding-bottom-20">
+				<div class="pi-counter pi-counter-simple" data-count-from="0" data-count-to="225" data-easing="easeInCirc" data-duration="3000" data-frames-per-second="10">
+					<div class="pi-counter-count pi-counter-count-big pi-text-white pi-weight-300">
+					
+						<p>
+							<i class="icon-download pi-icon pi-icon-big pi-text-white"></i>
+						</p>
+					
+						<span class="pi-counter-number">225</span>
+
+					</div>
+					<p>Orders So Far</p>
+				</div>
+			</div>
+			<!-- End col 3 -->
+			
+			
+		</div>
+		<!-- End row -->
+		
+	</div>
+</div>
+
+<!-- - - - - - - - - - END SECTION - - - - - - - - - -->
+</div>
+
+<!-- Footer -->
+
+<!-- Copyright area -->
+<div class="pi-section-w pi-section-dark pi-border-top-light ">
+	<div class="pi-section pi-row-lg pi-center-text-2xs pi-clearfix">
+
+		<!-- Social icons -->
+		<div class="pi-row-block pi-pull-right pi-hidden-2xs">
+			<ul class="pi-social-icons-simple pi-small clearFix">
+				<li><a target="_blank" href="https://www.facebook.com/MercuryMQ" href="#" class="pi-social-icon-facebook"><i class="icon-facebook"></i></a></li>
+				<li><a target="_blank" href="https://www.twitter.com/mercurymq" href="#" class="pi-social-icon-twitter"><i class="icon-twitter"></i></a></li>
+				<li><a target="_blank" href="http://instagram.com/mercurymq201" href="#" class="pi-social-icon-instagram"><i class="icon-instagram"></i></a></li>
+			</ul>
+		</div>
+		<!-- End social icons -->
+
+
+		<!-- Text -->
+		<span class="pi-row-block pi-row-block-txt pi-hidden-xs">&copy; 2014, The Grid Media, LLC.
+			All right reserved.
+		</span>
+		<!-- End text -->
+
+	</div>
+</div>
+<!-- End copyright area -->
+<!-- End footer -->
+
+</div>
+
+<script src="../site/3dParty/jquery-1.11.0.min.js"></script>
+<script src="../site/3dParty/jquery.touchSwipe.min.js"></script>
+<script src="../site/3dParty/gauge.min.js"></script>
+<script src="../site/3dParty/inview.js"></script>
+<script src="../site/3dParty/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+<script src="../site/3dParty/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script src="../site/3dParty/jquery.scrollTo.min.js"></script>
+<script src="../site/3dParty/colorbox/jquery.colorbox-min.js"></script>
+<script src="../site/scripts/pi.global.js"></script>
+<script src="../site/scripts/pi.slider.js"></script>
+<script src="../site/scripts/pi.init.slider.js"></script>
+<script src="../site/3dParty/jquery.easing.1.3.js"></script>
+<script src="../site/scripts/pi.counter.js"></script>
+<script src="../site/scripts/pi.init.counter.js"></script>
+<script src="../site/scripts/pi.parallax.js"></script>
+<script src="../site/scripts/pi.init.parallax.js"></script>
+<script src="../site/scripts/pi.init.revolutionSlider.js"></script>
+
+
+</body>
+</html>
