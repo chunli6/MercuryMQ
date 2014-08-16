@@ -7,9 +7,9 @@ app.controller('HomeController', function($scope, $http){
     $scope.newOrder = {'from':'', 'order':'', 'address':''};
     $scope.selectedVenue = null;
     $scope.featuredVenues = [{'name':'Chipotle', 'city':'Ramsey', 'state':'NJ', 'description':'Chipotle\'s menu consists of five items: burritos, fajita burritos, burritos bowls, tacos and salads. Chipotle elevates basic raw ingredients into food that\'s richer through their recipes and cooking techniques.', 'image':'chipotle.png'},
+                             {'name':'Panera Bread', 'city':'Woodcliff Lake', 'state':'NJ', 'description':'Panera offers a variety on their menu of sandwiches, soups and salads. Treat your taste buds to freshly baked flatbread, layered with fresh, bold ingredients. Have Panera delivered to your door and enjoy!', 'image':'panera.png'},
                              {'name':'CVS', 'city':'Montvale', 'state':'NJ', 'description':'CVS offers a wide range of products from paper towels to sunscreen. Feeling sick and need some Dayquil? No need to get up, just order from Mercury MQ. Need drinks and chips for a party? We\'ve got you covered.', 'image':'cvs.png'},
-                             {'name':'Whole Foods', 'city':'Ridgewood', 'state':'NJ', 'description':'Whole Foods seeks out the finest natural and organic foods avaiable. They maintain the strictest quality standards in the industry. Order healthy organic food for breakfast, lunch and dinner! ', 'image':'wholefoods.png'},
-                             {'name':'Panera Bread', 'city':'Woodcliff Lake', 'state':'NJ', 'description':'Panera offers a variety on their menu of sandwiches, soups and salads. Treat your taste buds to freshly baked flatbread, layered with fresh, bold ingredients. Have Panera delivered to your door and enjoy!', 'image':'panera.png'}];
+                             {'name':'Whole Foods', 'city':'Ridgewood', 'state':'NJ', 'description':'Whole Foods seeks out the finest natural and organic foods avaiable. They maintain the strictest quality standards in the industry. Order healthy organic food for breakfast, lunch and dinner! ', 'image':'wholefoods.png'}];
     
     
     
