@@ -6,8 +6,6 @@ app.controller('ProfileController', function($scope, $http){
     $scope.profile = {};
     $scope.orders = null;
     $scope.passwordConfirm = '';
-    $scope.periods = ['period1'];
-    $scope.weeks = {'period1':'July 6 - July 12'};
     
     $scope.init = function() {
     	console.log('ProfileController: INIT');

@@ -37,9 +37,17 @@
 
 	<!--Fonts with Icons-->
 	<link rel="stylesheet" href="../site/3dParty/fontello/css/fontello.css"/>
+	
+	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+  	<script src='../site/js/controllers/profile.js'></script>
+	
 
 </head>
-<body>
+
+
+
+<body ng-app="Profile" ng-controller="ProfileController" ng-init="init();">
+
 
 <!-- Header -->
 <div class="pi-header">
@@ -202,9 +210,9 @@
 		<!-- Openings -->
 		<div class="pi-tabs-vertical pi-responsive-sm">
 			<ul class="pi-tabs-navigation pi-tabs-navigation-transparent" id="myTabs">
-				<li class="pi-active"><a href="#aboutus">About Us</a></li>
-				<li><a href="#howitworks">How it Works</a></li>
-				<li><a href="#team">Drivers</a></li>
+				<li class="pi-active"><a href="#aboutus">Profile</a></li>
+				<li><a href="#howitworks">Order History</a></li>
+				<li><a href="#team">Billing Info</a></li>
 				<li><a href="#clients">Customers</a></li>
 			</ul>
 			<div class="pi-tabs-content pi-tabs-content-transparent">
