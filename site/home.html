@@ -87,8 +87,8 @@
         <h4 class='modal-title'>Log In</h4>
       </div>
       <div class='modal-body' style="text-align:center">
-        <input ng-model="newOrder.from" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="phone number (ex: 201-555-1234)" /><br /><br />
-        <input ng-model="newOrder.address" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="password" /><br /><br />
+        <input ng-model="profile.number" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="phone number (ex: 201-555-1234)" /><br /><br />
+        <input ng-model="profile.password" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="password" /><br /><br />
       </div>
       <div class='modal-footer'>
         <button class='btn btn-default' data-dismiss='modal' type='button'>Cancel</button>
@@ -152,7 +152,8 @@
 			<a href="faq.html"><span>FAQ</span></a>
 		</li>
 		<li class="">
-			<a href="#" data-toggle="modal" data-target="#login"><span>Sign In</span></a>
+			<a ng-show="profile.loggedIn=='no'" href="#" data-toggle="modal" data-target="#login"><span>Sign In</span></a>
+			<a ng-show="profile.loggedIn=='yes'" href="/site/profile"><span>{{ profile.name }}</span></a>
 		</li>
 	</ul>
 </div>

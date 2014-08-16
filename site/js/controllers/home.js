@@ -15,8 +15,25 @@ app.controller('HomeController', function($scope, $http){
     
     $scope.init = function() {
     	console.log('HomeController: INIT');
+    	checkLoggedIn();
     }
     
+    function checkLoggedIn(){
+        var url = '/api/profile';
+        $http.get(url).success(function(data, status, headers, config) {
+            var results = data['results'];
+            var confirmation = results['confirmation'];
+            if (confirmation=='success'){
+                $scope.profile = results['profile'];
+                console.log(JSON.stringify($scope.profile));
+            }
+            else {
+//                alert(results['message']);
+            }
+        }).error(function(data, status, headers, config) {
+            console.log("error", data, status, headers, config);
+        });
+    }
     
     
     $scope.register = function() {
@@ -73,12 +90,15 @@ app.controller('HomeController', function($scope, $http){
     		alert('Please Enter a Password.');
     		return;
     	}
+    	
+    	self.loading = true;
 
 		var json = JSON.stringify($scope.profile);
 		console.log(json);
 
         var url = '/api/login';
         $http.post(url, json).success(function(data, status, headers, config) {
+        	self.loading = false;
             var results = data['results'];
             var confirmation = results['confirmation'];
             if (confirmation=='success'){
