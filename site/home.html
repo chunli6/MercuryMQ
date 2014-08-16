@@ -149,11 +149,17 @@
 		<li class=""><a href="/site/about"><span>About</span></a>
 		</li>
 		<li class="">
-			<a href="faq.html"><span>FAQ</span></a>
+			<a href="/site/faq"><span>FAQ</span></a>
 		</li>
-		<li class="">
-			<a ng-show="profile.loggedIn=='no'" href="#" data-toggle="modal" data-target="#login"><span>Sign In</span></a>
-			<a ng-show="profile.loggedIn=='yes'" href="/site/profile"><span>{{ profile.name }}</span></a>
+		<li class="" ng-show="profile.loggedIn=='no'">
+			<a href="#" data-toggle="modal" data-target="#login"><span>Sign In</span></a>
+		</li>
+		<li class="" ng-show="profile.loggedIn=='yes'" >
+			<a href="/site/profile"><span>{{ profile.name }}</span></a>
+ 			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+				<li><a href="/site/logout"><span>Logout</span></a></li>
+				<li><a href="home-home-2.html"><span>Home 2</span></a></li>
+			</ul> 
 		</li>
 	</ul>
 </div>
