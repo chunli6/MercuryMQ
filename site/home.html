@@ -69,7 +69,6 @@
       <div class='modal-body' style="text-align:center">
         <input ng-model="newOrder.from" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="phone number (ex: 201-555-1234)" /><br /><br />
         <input ng-model="newOrder.address" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="address (ex: 11 Main Street, Ridgewood, NJ)" /><br /><br />
-        <input ng-model="newOrder.promo" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="promo code (optional)" /><br /><br />
         <textarea ng-model="newOrder.order" class='form-control' style="width:90%;margin-left:auto;margin-right:auto" name='' rows='5' placeholder="order"></textarea>
       </div>
       <div class='modal-footer'>
@@ -305,18 +304,16 @@
 		<div class="pi-row">
 			
 			<!-- Col 3 -->
-			<div class="pi-col-xs-6 pi-col-sm-3">
-			
+			<div ng-repeat="venue in featuredVenues track by $index" class="pi-col-xs-6 pi-col-sm-3">
+
 				<!-- Team member -->
 					<div class="pi-img-w pi-img-round-corners" style="padding:20px;background:#f9f9f9;border:1px solid #ededed;font-family:Arial;font-height:11px;min-height:280px">
-						<img align="left" style="border:none;max-width:90px;padding-right:10px" src="../site/img/venues/chipotle.png" alt="">
-						<br /><br />Chipotle's menu consists of five items: burritos, fajita burritos, burritos bowls, tacos and salads. Chipotle elevates basic raw ingredients into food that's richer through their recipes and cooking techniques.
+						<img align="left" style="border:none;max-width:90px;padding-right:10px" src="../site/img/venues/{{venue.image}}" alt="">
+						<br /><br />{{ venue.description }}
 						<div class="pi-img-overlay pi-img-overlay-darker">
 							<div class="pi-caption-centered">
 								<div>
-
-
-									<a href="" data-toggle="modal" data-target="#order">
+									<a href="" ng-click="selectVenue($index)" data-toggle="modal" data-target="#order">
 										<span class="pi-caption-icon pi-caption-icon-large pi-caption-scale" style="font-size:14px">Order</span>
 									</a>
 								</div>
@@ -325,81 +322,13 @@
 						
 					</div>
 				<!-- End team member -->
+				
+				
 				
 			</div>
 			<!-- End col 3 -->
 			
-			<!-- Col 3 -->			
-			<div class="pi-col-xs-6 pi-col-sm-3">
-			
-				<!-- Team member -->
-					<div class="pi-img-w pi-img-round-corners" style="padding:20px;background:#f9f9f9;border:1px solid #ededed;font-family:Arial;font-height:11px;min-height:280px">
-						<img align="left" style="border:none;max-width:90px;padding-right:10px" src="../site/img/venues/panera.png" alt="">
-						<br /><br />Panera offers a variety on their menu of sandwiches, soups and salads. Treat your taste buds to freshly baked flatbread, layered with fresh, bold ingredients. Have Panera delivered to your door and enjoy!
 
-						<div class="pi-img-overlay pi-img-overlay-darker">
-							<div class="pi-caption-centered">
-								<div>
-									<a href="#">
-										<span class="pi-caption-icon pi-caption-icon-large pi-caption-scale" style="font-size:14px">Order</span>
-									</a>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-				<!-- End team member -->
-				
-			</div>
-			<!-- End col 3 -->
-
-			<div class="pi-clearfix pi-visible-xs"></div>
-
-			<!-- Col 3 -->	
-			<div class="pi-col-xs-6 pi-col-sm-3">
-			
-				<!-- Team member -->
-					<div class="pi-img-w pi-img-round-corners" style="padding:20px;background:#f9f9f9;border:1px solid #ededed;font-family:Arial;font-height:11px;min-height:280px">
-						<img align="left" style="border:none;max-width:90px;padding-right:10px" src="../site/img/venues/cvs.png" alt="">
-						<br /><br />CVS offers a wide range of products from paper towels to sunscreen. Feeling sick and need some Dayquil? No need to get up, just order from Mercury MQ. Need drinks and chips for a party? We've got you covered.
-						
-						<div class="pi-img-overlay pi-img-overlay-darker">
-							<div class="pi-caption-centered">
-								<div>
-									<a href="#">
-										<span class="pi-caption-icon pi-caption-icon-large pi-caption-scale" style="font-size:14px">Order</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				<!-- End team member -->
-				
-			</div>
-			<!-- End col 3 -->
-			
-			<!-- Col 3 -->	
-			<div class="pi-col-xs-6 pi-col-sm-3">
-			
-				<!-- Team member -->
-					<div class="pi-img-w pi-img-round-corners" style="padding:20px;background:#f9f9f9;border:1px solid #ededed;font-family:Arial;font-height:11px;min-height:280px">
-						<img align="left" style="border:none;max-width:90px;padding-right:10px" src="../site/img/venues/chipotle.png" alt="">
-						<br /><br />Chipotle's menu consists of five items: burritos, fajita burritos, burritos bowls, tacos and salads. Chipotle elevates basic raw ingredients into food that's richer through their recipes and cooking techniques.
-						
-						<div class="pi-img-overlay pi-img-overlay-darker">
-							<div class="pi-caption-centered">
-								<div>
-									<a href="#">
-										<span class="pi-caption-icon pi-caption-icon-large pi-caption-scale" style="font-size:14px">Order</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				<!-- End team member -->
-				
-			</div>	
-			<!-- End col 3 -->
 			
 		</div>
 		<!-- End row -->

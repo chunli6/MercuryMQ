@@ -4,7 +4,7 @@ var app = angular.module('Home', []);
 app.controller('HomeController', function($scope, $http){
 	$scope.loading = false;
     $scope.profile = {'email':'', 'password':'', 'name':'', 'loggedIn':'no', 'number':''};
-    $scope.newOrder = {'from':'', 'order':'', 'promo':'', 'address':''};
+    $scope.newOrder = {'from':'', 'order':'', 'address':''};
     $scope.selectedVenue = null;
     $scope.featuredVenues = [{'name':'Chipotle', 'city':'Ramsey', 'state':'NJ', 'description':'Chipotle\'s menu consists of five items: burritos, fajita burritos, burritos bowls, tacos and salads. Chipotle elevates basic raw ingredients into food that\'s richer through their recipes and cooking techniques.', 'image':'chipotle.png'},
                              {'name':'CVS', 'city':'Montvale', 'state':'NJ', 'description':'CVS offers a wide range of products from paper towels to sunscreen. Feeling sick and need some Dayquil? No need to get up, just order from Mercury MQ. Need drinks and chips for a party? We\'ve got you covered.', 'image':'cvs.png'},
