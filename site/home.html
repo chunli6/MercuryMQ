@@ -36,9 +36,18 @@
 	<!--Fonts with Icons-->
 	<link rel="stylesheet" href="../site/3dParty/fontello/css/fontello.css"/>
 
+
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+  <script src='../site/js/controllers/home.js'></script>
+
 </head>
 
-<body>
+<body ng-app="Home" ng-controller="HomeController" ng-init="init();">
+    <div class="loading-overlay" ng-show="loading">
+      <div spinner spin="loading"></div>
+    </div>
+    
+    
 <!--MODALS-->
 <div class="modal fade" id="orderExample" aria-hidden="true">
   <div class="modal-dialog">
@@ -591,7 +600,9 @@
 <script src="../site/scripts/pi.parallax.js"></script>
 <script src="../site/scripts/pi.init.parallax.js"></script>
 <script src="../site/scripts/pi.init.revolutionSlider.js"></script>
-
+<script src="../site/js/knob.js"></script>
+<script src="../site/js/spin.js"></script> 
+<script src="../site/js/moment.js"></script>
 
 </body>
 </html>
