@@ -4,13 +4,10 @@ var app = angular.module('Home', []);
 app.controller('HomeController', function($scope, $http){
 	$scope.loading = false;
     $scope.profile = {'email':'', 'password':'', 'name':'', 'loggedIn':'no', 'number':''};
-    $scope.leaders = null;
     $scope.newOrder = {'from':'', 'order':'', 'promo':'', 'address':''};
     $scope.selectedVenue = null;
-    $scope.featuredVenues = [{'name':'Wasabi', 'city':'Ridgewood', 'state':'NJ', 'description':'For the best sushi and Japanese cuisine in Bergen county, order from Wasabi Japanese Restaurant. Wasabi offers full lunch and dinner seven days a week.', 'image':'wasabi.png'},
-                             {'name':'Blue Moon', 'city':'Woodcliff Lake', 'state':'NJ', 'description':'If you\'re looking for authentic Mexican cuisine, Blue Moon Mexican Cafe is the place. With a menu featuring guacamole, tacos and burritos, everyone will be able to find something that they will love.', 'image':'bluemoon.png'},
+    $scope.featuredVenues = [{'name':'Chipotle', 'city':'Ramsey', 'state':'NJ', 'description':'Chipotle\'s menu consists of five items: burritos, fajita burritos, burritos bowls, tacos and salads. Chipotle elevates basic raw ingredients into food that\'s richer through their recipes and cooking techniques.', 'image':'chipotle.png'},
                              {'name':'CVS', 'city':'Montvale', 'state':'NJ', 'description':'CVS offers a wide range of products from paper towels to sunscreen. Feeling sick and need some Dayquil? No need to get up, just order from Mercury MQ. Need drinks and chips for a party? We\'ve got you covered.', 'image':'cvs.png'},
-                             {'name':'Chipotle', 'city':'Ramsey', 'state':'NJ', 'description':'Chipotle\'s menu consists of five items: burritos, fajita burritos, burritos bowls, tacos and salads. Chipotle elevates basic raw ingredients into food that\'s richer through their recipes and cooking techniques.', 'image':'chipotle.png'},
                              {'name':'Whole Foods', 'city':'Ridgewood', 'state':'NJ', 'description':'Whole Foods seeks out the finest natural and organic foods avaiable. They maintain the strictest quality standards in the industry. Order healthy organic food for breakfast, lunch and dinner! ', 'image':'wholefoods.png'},
                              {'name':'Panera Bread', 'city':'Woodcliff Lake', 'state':'NJ', 'description':'Panera offers a variety on their menu of sandwiches, soups and salads. Treat your taste buds to freshly baked flatbread, layered with fresh, bold ingredients. Have Panera delivered to your door and enjoy!', 'image':'panera.png'}];
     
@@ -18,36 +15,9 @@ app.controller('HomeController', function($scope, $http){
     
     $scope.init = function() {
     	console.log('HomeController: INIT');
-    	fetchContestLeaders();
-    }
-
-    
-    
-    function fetchContestLeaders() {
-        var url = '/api/profiles?sort=points';
-        $http.get(url).success(function(data, status, headers, config) {
-            var results = data['results'];
-            var confirmation = results['confirmation'];
-            if (confirmation=='success'){
-            	$scope.leaders = results.profiles;
-            }
-            else {
-                alert(results['message']);
-            }
-        }).error(function(data, status, headers, config) {
-            console.log("error", data, status, headers, config);
-        });
     }
     
-    $scope.prizeValue = function(index){
-    	if (index==0)
-    		return '$50';
-    	else if (index==1)
-    		return '$20';
-    	else
-    		return '';
-    }
-
+    
     
     $scope.register = function() {
     	$scope.profile.email = document.getElementById('email').value;
