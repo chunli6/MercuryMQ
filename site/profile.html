@@ -88,22 +88,21 @@
 <!-- Menu -->
 <div class="pi-row-block pi-pull-right">
 	<ul class="pi-simple-menu pi-has-hover-border pi-full-height pi-hidden-sm">
-		<li class=""><a href="/"><span>Home</span></a>
- 			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
-				<li><a href="index.html"><span>Home 1</span></a></li>
-				<li><a href="home-home-2.html"><span>Home 2</span></a></li>
-				<li><a href="home-home-3.html"><span>Home 3</span></a></li>
-			</ul> 
-		</li>
+		<li class=""><a href="/"><span>Home</span></a></li>
 		<li class="active">
 			<a href="/site/about"><span>About</span></a>
 		</li>
 		<li class="">
 			<a href="faq.html"><span>FAQ</span></a>
 		</li>
-		<li class="">
-			<a href="#"><span>Sign In</span></a>
+		<li class="" ng-show="profile.loggedIn=='yes'" >
+			<a href="/site/profile"><span>{{ profile.name }}</span></a>
+ 			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+				<li><a href="/site/logout"><span>Logout</span></a></li>
+				<li><a href="home-home-2.html"><span>Home 2</span></a></li>
+			</ul> 
 		</li>
+		
 	</ul>
 </div>
 <!-- End menu -->
