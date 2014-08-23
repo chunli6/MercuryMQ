@@ -37,11 +37,13 @@
 
 
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+  <script src='../site/js/app.js'></script>
   <script src='../site/js/controllers/home.js'></script>
+  <script src='../site/js/controllers/about.js'></script>
 
 </head>
 
-<body ng-app="Home" ng-controller="HomeController" ng-init="init();">
+<body ng-app="TextAlert" ng-controller="HomeController" ng-init="init();">
     <div class="loading-overlay" ng-show="loading">
       <div spinner spin="loading"></div>
     </div>
@@ -136,25 +138,7 @@
 <!-- End text -->
 
 <!-- Menu -->
-<div class="pi-row-block pi-pull-right">
-	<ul class="pi-simple-menu pi-has-hover-border pi-full-height pi-hidden-sm">
-		<li class="active"><a href="/"><span>Home</span></a></li>
-		<li class=""><a href="/site/about"><span>About</span></a></li>
-		<li class="">
-			<a href="/site/faq"><span>FAQ</span></a>
-		</li>
-		<li class="" ng-show="profile.loggedIn=='no'">
-			<a href="#" data-toggle="modal" data-target="#login"><span>Sign In</span></a>
-		</li>
-		<li class="" ng-show="profile.loggedIn=='yes'" >
-			<a href="/site/profile"><span>{{ profile.name }}</span></a>
- 			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
-				<li><a href="/site/logout"><span>Logout</span></a></li>
-				<li><a href="home-home-2.html"><span>Home 2</span></a></li>
-			</ul> 
-		</li>
-	</ul>
-</div>
+<menu></menu>
 <!-- End menu -->
 
 <!-- Mobile menu button -->
@@ -261,6 +245,7 @@
 		
 		<!-- Row -->
 		<div class="pi-row">
+		
 		
 		  <!-- Team member -->
 		  <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:30px;background:#fff;font-family:Arial;font-height:11px;min-height:280px">

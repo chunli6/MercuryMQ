@@ -40,7 +40,9 @@
 	
 	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
   	<script src='../site/js/controllers/profile.js'></script>
-	
+
+
+
 
 </head>
 
@@ -286,37 +288,23 @@
 						</div>
 					</div>
 					<div class="pi-row">
-						<div class="pi-col-sm-6">
-							<h3 class="h4 pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-bottom-25">
-								Using Our Platform
-							</h3>
-							
-							<p>
-								<span class="pi-dropcap">P</span>ick a place you want to order from. Then, send a text message to <strong>(201) 383-4611</strong>. In the body of the text, put the restaurant, your address, the order, and any promo code in the format depicted to the right.
-								<br><br>
-								You will receive a confirmation message, which means that one of our drivers has been dispatched to deliver your order. Most order carry just a $6 flat delivery fee, and your first delivery fee is free!
-							</p>
-						</div>
-						<div class="pi-col-sm-6">
-							<img src="../site/img/orderExample.png">
-						</div>
-					</div>
-					<div class="pi-row" style="margin-top:20px">
-						<div class="pi-col-sm-12">
-							If you receive an error message, you probably didn’t format the order correctly. Be sure to use the <strong>exact format</strong> shown above, <strong>including line number and periods</strong>.
-							<br><br>
-							We are open from <strong>11am to midnight</strong> every day but Sunday.
-						</div>
+					
+<form action="/stripe/charge" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_live_8ftaqUCg4JwMMzw0NK6xl3H2"
+    data-label="Add Card"
+    data-amount="0"
+    data-name="Demo Site"
+    data-description="Add Card"
+    data-image="/128x128.png">
+  </script>
+</form>					
+
+
 					</div>
 					
-					<hr class="pi-divider-gap-40">
 					
-					<h3 class="h4 pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-bottom-25 pi-has-bg">
-						Places to Order From
-					</h3>
-					<p>
-						Mercury MQ lets you choose where you want to order from. Your restaurant/store must close enough that we can reasonably deliver in approx. 40 minutes, and they must offer quick takeout (i.e. call ahead ordering, drive through, etc.) so that our drivers can pick up your food upon arrival.
-					</p>
 		          
 		          </div>
 				
