@@ -38,8 +38,12 @@
 	<!--Fonts with Icons-->
 	<link rel="stylesheet" href="../site/3dParty/fontello/css/fontello.css"/>
 	
-	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
-  	<script src='../site/js/controllers/profile.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+  <script src='../site/js/app.js'></script>
+  <script src='../site/services/rest.js'></script>
+  <script src='../site/js/controllers/home.js'></script>
+  <script src='../site/js/controllers/about.js'></script>
+  <script src='../site/js/controllers/profile.js'></script>
 
 
 
@@ -48,7 +52,11 @@
 
 
 
-<body ng-app="Profile" ng-controller="ProfileController" ng-init="init();">
+<body ng-app="TextAlert" ng-controller="ProfileViewController" ng-init="init();">
+    <div class="loading-overlay" ng-show="loading">
+      <div spinner spin="loading"></div>
+    </div>
+
 
 
 <!-- Header -->
@@ -88,25 +96,7 @@
 <!-- End text -->
 
 <!-- Menu -->
-<div class="pi-row-block pi-pull-right">
-	<ul class="pi-simple-menu pi-has-hover-border pi-full-height pi-hidden-sm">
-		<li class=""><a href="/"><span>Home</span></a></li>
-		<li class="active">
-			<a href="/site/about"><span>About</span></a>
-		</li>
-		<li class="">
-			<a href="faq.html"><span>FAQ</span></a>
-		</li>
-		<li class="" ng-show="profile.loggedIn=='yes'" >
-			<a href="/site/profile"><span>{{ profile.name }}</span></a>
- 			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
-				<li><a href="/site/logout"><span>Logout</span></a></li>
-				<li><a href="home-home-2.html"><span>Home 2</span></a></li>
-			</ul> 
-		</li>
-		
-	</ul>
-</div>
+<menu></menu>
 <!-- End menu -->
 
 
@@ -608,6 +598,10 @@
 <script src="../site/scripts/pi.init.tab.js"></script>
 <script src="../site/scripts/pi.parallax.js"></script>
 <script src="../site/scripts/pi.init.parallax.js"></script>
+<script src="../site/scripts/pi.init.revolutionSlider.js"></script>
+<script src="../site/js/knob.js"></script>
+<script src="../site/js/spin.js"></script> 
+<script src="../site/js/moment.js"></script>
 
 
 </body>

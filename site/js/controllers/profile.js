@@ -1,7 +1,7 @@
 var profileViewController = angular.module('ProfileViewController', []);
 
 
-profileViewController.controller('ProfileViewController', function($scope, $http){
+profileViewController.controller('ProfileViewController', ['$scope', '$http', 'restService', function($scope, $http, restService){
     $scope.loading = false;
     $scope.profile = {};
     $scope.orders = null;
@@ -9,7 +9,17 @@ profileViewController.controller('ProfileViewController', function($scope, $http
     
     $scope.init = function() {
     	console.log('ProfileController: INIT');
-    	fetchProfile();
+    	var result = restService.checkLoggedIn(function(response) {
+    		if (response.hasOwnProperty('error'))
+    			alert(response.error);
+    		
+    		if (response.hasOwnProperty('profile'))
+    			$scope.profile = response['profile'];
+    		
+    		if (response.hasOwnProperty('message')) // user not logged in.
+    			alert(response.message);
+
+    	});
     }
 
     $scope.capitalize = function(string) {
@@ -129,5 +139,5 @@ profileViewController.controller('ProfileViewController', function($scope, $http
     }
 
 
-});
+}]);
 
