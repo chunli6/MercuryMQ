@@ -1,4 +1,4 @@
-var app = angular.module('TextAlert', ['HomeViewController', 'AboutViewController']);
+var app = angular.module('TextAlert', ['restService', 'HomeViewController', 'AboutViewController']);
 
 app.directive('menu', function() {
 	  return {
@@ -42,6 +42,27 @@ app.directive('spinner', function() {
                 else {
                     spinner.stop();
                 }
+            });
+        }
+    }
+});
+
+
+app.directive('knob', function() {
+    return {
+        restrict: 'A',
+        replace: false,
+        scope: {
+            knobValue: '=time'
+        },
+        link: function (scope, element, attrs) {
+            scope.$watch('knobValue', function (knobValue) {
+                element.knob({
+                    'format': function (v) {
+                        return v + " min";
+                    }
+                });
+                element.val(knobValue).trigger('change');
             });
         }
     }

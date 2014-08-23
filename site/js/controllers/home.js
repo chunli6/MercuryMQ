@@ -1,7 +1,7 @@
 var homeController = angular.module('HomeViewController', []);
 
 
-homeController.controller('HomeController', ['$scope', '$http', function($scope, $http){
+homeController.controller('HomeController', ['$scope', '$http', 'restService', function($scope, $http, restService){
 	$scope.loading = false;
     $scope.profile = {'email':'', 'password':'', 'name':'', 'loggedIn':'no', 'number':''};
     $scope.newOrder = {'from':'', 'order':'', 'address':''};
@@ -15,24 +15,14 @@ homeController.controller('HomeController', ['$scope', '$http', function($scope,
     
     $scope.init = function() {
     	console.log('HomeController: INIT');
-    	checkLoggedIn();
-    }
-    
-    function checkLoggedIn(){
-        var url = '/api/profile';
-        $http.get(url).success(function(data, status, headers, config) {
-            var results = data['results'];
-            var confirmation = results['confirmation'];
-            if (confirmation=='success'){
-                $scope.profile = results['profile'];
-                console.log(JSON.stringify($scope.profile));
-            }
-            else {
-//                alert(results['message']);
-            }
-        }).error(function(data, status, headers, config) {
-            console.log("error", data, status, headers, config);
-        });
+    	
+    	var result = restService.checkLoggedIn(function(response) {
+    		if (response.hasOwnProperty('error'))
+    			alert(response.error);
+    		
+    		if (response.hasOwnProperty('profile'))
+    			$scope.profile = response['profile'];
+    	});
     }
     
     
@@ -60,7 +50,7 @@ homeController.controller('HomeController', ['$scope', '$http', function($scope,
     	}
 
 
-		json = JSON.stringify($scope.profile);
+		var json = JSON.stringify($scope.profile);
 		console.log(json);
 
         var url = '/api/profile';

@@ -1,31 +1,20 @@
 var aboutController = angular.module('AboutViewController', []);
 
 
-aboutController.controller('AboutViewController', ['$scope', '$http', function($scope, $http){
+aboutController.controller('AboutViewController', ['$scope', '$http', 'restService', function($scope, $http, restService){
 	$scope.loading = false;
     $scope.profile = {'email':'', 'password':'', 'name':'', 'loggedIn':'no', 'number':''};
     
     
     $scope.init = function() {
     	console.log('AboutController: INIT');
-    	checkLoggedIn();
-    }
-    
-    function checkLoggedIn(){
-        var url = '/api/profile';
-        $http.get(url).success(function(data, status, headers, config) {
-            var results = data['results'];
-            var confirmation = results['confirmation'];
-            if (confirmation=='success'){
-                $scope.profile = results['profile'];
-                console.log(JSON.stringify($scope.profile));
-            }
-            else {
-//                alert(results['message']);
-            }
-        }).error(function(data, status, headers, config) {
-            console.log("error", data, status, headers, config);
-        });
+    	var result = restService.checkLoggedIn(function(response) {
+    		if (response.hasOwnProperty('error'))
+    			alert(response.error);
+    		
+    		if (response.hasOwnProperty('profile'))
+    			$scope.profile = response['profile'];
+    	});
     }
     
     
