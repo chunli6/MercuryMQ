@@ -9,7 +9,7 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
     
     $scope.init = function() {
     	console.log('ProfileController: INIT');
-    	var result = restService.checkLoggedIn(function(response) {
+    	restService.checkLoggedIn(function(response) {
     		if (response.hasOwnProperty('error'))
     			alert(response.error);
     		
@@ -45,26 +45,6 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
     	updateProfile();
     }
 
-
-
-//    function fetchProfile(){
-//        var url = '/api/profile/';
-//        $http.get(url).success(function(data, status, headers, config) {
-//            results = data['results'];
-//            confirmation = results['confirmation'];
-//            if (confirmation=='success'){
-//            	$scope.profile = results['profile'];
-//                console.log(JSON.stringify($scope.profile));
-//                fetchProfileOrders();
-//            }
-//            else {
-//                alert(results['message']);
-//            }
-//
-//        }).error(function(data, status, headers, config) {
-//            console.log("error", data, status, headers, config);
-//        });
-//    }
 
     function updateProfile() {
         
