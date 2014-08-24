@@ -51,6 +51,25 @@
 
 <body ng-app="TextAlert" ng-controller="AboutViewController" ng-init="init();">
 
+<div class="modal fade" id="login" aria-hidden="true">
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h4 class='modal-title'>Log In</h4>
+      </div>
+      <div class='modal-body' style="text-align:center">
+        <input ng-model="profile.number" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="phone number (ex: 201-555-1234)" /><br /><br />
+        <input ng-model="profile.password" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="password" /><br /><br />
+      </div>
+      <div class='modal-footer'>
+        <button class='btn btn-default' data-dismiss='modal' type='button'>Cancel</button>
+        <button class='btn btn-primary' data-dismiss='modal' type='button' ng-click="login()">Log In</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 <!-- Header -->
 <div class="pi-header">
 

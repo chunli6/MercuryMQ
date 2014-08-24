@@ -8,7 +8,7 @@ aboutController.controller('AboutViewController', ['$scope', '$http', 'restServi
     
     $scope.init = function() {
     	console.log('AboutController: INIT');
-    	var result = restService.checkLoggedIn(function(response) {
+    	restService.checkLoggedIn(function(response) {
     		if (response.hasOwnProperty('error'))
     			alert(response.error);
     		
@@ -16,7 +16,23 @@ aboutController.controller('AboutViewController', ['$scope', '$http', 'restServi
     			$scope.profile = response['profile'];
     	});
     }
-    
+
+    $scope.login = function(){
+    	$scope.loading = true;
+
+		restService.login($scope.profile, function(response){
+	    	$scope.loading = false;
+    		if (response.hasOwnProperty('error')) // network fail
+    			alert(response.error);
+
+    		if (response.hasOwnProperty('message')) // login fail
+    			alert(response.message);
+
+    		if (response.hasOwnProperty('profile')) // login success
+                window.location.href = '/site/profile';
+		});
+    }
+
     
     $scope.register = function() {
     	$scope.profile.email = document.getElementById('email').value;
@@ -62,40 +78,6 @@ aboutController.controller('AboutViewController', ['$scope', '$http', 'restServi
 
     }
     
-    $scope.login = function(){
-    	if ($scope.profile.number.length < 10){
-    		alert('Please Enter a Valid Phone Number.');
-    		return;
-    	}
-
-    	if ($scope.profile.password.length==0){
-    		alert('Please Enter a Password.');
-    		return;
-    	}
-    	
-    	self.loading = true;
-
-		var json = JSON.stringify($scope.profile);
-		console.log(json);
-
-        var url = '/api/login';
-        $http.post(url, json).success(function(data, status, headers, config) {
-        	self.loading = false;
-            var results = data['results'];
-            var confirmation = results['confirmation'];
-            if (confirmation=='success'){
-//            	console.log(JSON.stringify(results));
-                window.location.href = '/site/profile';
-            }
-            else {
-                alert(results['message']);
-            }
-        }).error(function(data, status, headers, config) {
-            console.log("error", data, status, headers, config);
-        });
-    	
-    	
-    }
     
 
     $scope.capitalize = function(string) {

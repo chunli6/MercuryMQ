@@ -9,6 +9,15 @@ app.directive('menu', function() {
 });
 
 
+app.directive('loginModal', function() {
+	  return {
+	      restrict: 'AE',
+	      replace: true,
+	      templateUrl: '/site/partials/login.html'
+	  };
+});
+
+
 app.directive('spinner', function() {
     return {
         restrict: 'A',

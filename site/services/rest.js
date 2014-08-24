@@ -23,6 +23,28 @@ restService.factory('restService', ['$http',
                                                     	  callback({'error':data});
                                                       });
                                                   },
+                                                  
+                                                  login: function(profile, callback) {
+                                                  	if (profile.number.length < 10){
+                                                  		callback({'message':'Please Enter a Valid Phone Number.'});
+                                                		return;
+                                                	}
+
+                                                	if (profile.password.length==0){
+                                                		callback({'message':'Please Enter a Password.'});
+                                                		return;
+                                                	}
+
+                                                	
+                                            		$http.post('/api/login', JSON.stringify(profile)).success(function(data, status, headers, config) {
+                                                          var results = data['results'];
+                                                    	  callback(results);
+                                                      }).error(function(data, status, headers, config) {
+                                                          console.log("error", data, status, headers, config);
+                                                    	  callback({'error':data});
+                                                      });
+                                            		},
+                                                  
                                             	  
                                                   getResource: function(resource, id, params) {
                                                 	  var endpoint = '/api/'+resource;

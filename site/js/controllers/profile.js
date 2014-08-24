@@ -47,24 +47,24 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
 
 
 
-    function fetchProfile(){
-        var url = '/api/profile/';
-        $http.get(url).success(function(data, status, headers, config) {
-            results = data['results'];
-            confirmation = results['confirmation'];
-            if (confirmation=='success'){
-            	$scope.profile = results['profile'];
-                console.log(JSON.stringify($scope.profile));
-                fetchProfileOrders();
-            }
-            else {
-                alert(results['message']);
-            }
-
-        }).error(function(data, status, headers, config) {
-            console.log("error", data, status, headers, config);
-        });
-    }
+//    function fetchProfile(){
+//        var url = '/api/profile/';
+//        $http.get(url).success(function(data, status, headers, config) {
+//            results = data['results'];
+//            confirmation = results['confirmation'];
+//            if (confirmation=='success'){
+//            	$scope.profile = results['profile'];
+//                console.log(JSON.stringify($scope.profile));
+//                fetchProfileOrders();
+//            }
+//            else {
+//                alert(results['message']);
+//            }
+//
+//        }).error(function(data, status, headers, config) {
+//            console.log("error", data, status, headers, config);
+//        });
+//    }
 
     function updateProfile() {
         
