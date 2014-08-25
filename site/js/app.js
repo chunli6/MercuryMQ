@@ -35,7 +35,7 @@ app.directive('spinner', function() {
               corners: 1,
               rotate: 0,
               direction: 1,
-              color: '#000',
+              color: '#fff',
               speed: 1,
               trail: 60,
               shadow: false,
