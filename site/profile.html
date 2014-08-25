@@ -172,28 +172,6 @@
 							<li><a href="icons.html"><span>Icons</span></a></li>
 						</ul>
 					</li>
-					<li><a href="about-about-1.html"><span>Templates</span></a>
-						<ul>
-							<li><a href="about-about-1.html"><span>About Company 1</span></a></li>
-							<li><a href="sign-up.html"><span>Sign Up</span></a></li>
-							<li><a href="404.html"><span>404</span></a></li>
-							<li><a href="500.html"><span>500</span></a></li>
-						</ul>
-					</li>
-					<li><a href="titlebars-small-breadcrumb-right.html"><span>Elements</span></a>
-						<ul>
-							<li><a href="titlebars-small-breadcrumb-right.html"><span>Titlebars - Breadcrumb Right</span></a></li>
-							<li><a href="titlebars-small-breadcrumb-top.html"><span>Titlebars - Breadcrumb Top</span></a></li>
-							<li><a href="testimonials-simple.html"><span>Simple</span></a></li>
-							<li><a href="testimonials-photo.html"><span>With Photo</span></a></li>
-						</ul>
-					</li>
-					<li><a href="docs-docs.html"><span>Docs</span></a>
-						<ul>
-							<li><a href="docs-theme-structure.html"><span>Theme Structure</span></a></li>
-							<li><a href="docs-theme-settings.html"><span>Theme Settings</span></a></li>
-						</ul>
-					</li>
 				</ul>
 
 			</div>
@@ -220,7 +198,6 @@
 				<li class="pi-active"><a href="#aboutus">Profile</a></li>
 				<li><a href="#howitworks">Order History</a></li>
 				<li><a href="#team">Billing Info</a></li>
-				<li><a href="#clients">Customers</a></li>
 			</ul>
 			<div class="pi-tabs-content pi-tabs-content-transparent">
 			
@@ -228,52 +205,48 @@
 				<div class="pi-tab-pane pi-active" id="aboutus">
 				
 		        <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:20px;background:#fff;font-family:Arial;font-height:11px;min-height:280px">
-		        
-				    <div style="background:url(../site/img/test-image.jpg) no-repeat; background-size: cover;width:100%;height:120px;">
-					  	<div class="pi-section pi-padding-top-10 pi-padding-bottom-10">
-							<div class="pi-row">
-								<h3 class="pi-weight-300" style="color:#fff;margin-top:17px">
-									GET FOOD FROM ANYWHERE DELIVERED TO YOUR DOOR
-								</h3>
-							</div>
-						</div>
-					</div>
-		        
-					<hr class="pi-divider-gap-50">
-					
-					<p class="main-about-text">
-						<span class="pi-dropcap">H</span>ave you ever wanted food delivered from a restaurant that doesn't deliver? MercuryMQ will deliver food directly to your door from select local restaurants. Simply text your order, your address, and the restaurant that you would like to order from to 201-383-4611 and we will deliver your food. MercuryMQ Delivery costs only $6 per order, and your first order is free!<br/><br/>
-						To order, send a text message to 201-383-4611 with the following format (as shown): 
-						<br/>
-						1. Restaurant Name<br/>
-						2. Your Address<br/>
-						3. Your Order<br/>
 
-					</p>					
-					<div class="pi-img-w pi-img-round-corners pi-img-shadow pi-img-left pi-margin-top-5 main-about-image" style="width:270px">
-						<img src="../site/img/orderExample.png" alt=""/>
+		<!-- Row -->
+		<div class="pi-row">
+			
+			<!-- Col 3 -->
+			<div class="pi-col-xs-6 pi-col-sm-4">
+
+				<!-- Team member -->
+					<div class="pi-img-w pi-img-round-corners" style="padding:20px;background:#f9f9f9;border:1px solid #ededed;font-family:Arial;font-height:11px;min-height:280px">
+						<img style="border:none;padding-right:10px" src="/site/images/{{profile.image}}" alt="">
+						<form style="margin-top:20px" action="/site/images" method="POST" enctype="multipart/form-data">
+						  <input type="file" name="file" />
+						
+						</form>
 					</div>
-					<hr class="pi-divider-gap-50">
-					
-					<h3 class="h4 pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-bottom-20">
-						Our founding:
-					</h3>
-					<div class="pi-row">
-						<div class="pi-col-sm-12">
-							On a beautiful summer afternoon, Dan was melting into the couch playing Call of Duty. It dawned on him to order food, but Dan didn't want to order pizza for the billionth time. In that moment, Mercury MQ was born. After many late nights of programming, Dan built a delivery service that would let anyone easily order food via text message. Thus, Chipotle burritos were delivered all across the land.
-						</div>
+				<!-- End team member -->
+				
+			</div>
+			<!-- End col 3 -->
+			
+
+			<!-- Col 4 -->
+			<div class="pi-col-xs-6 pi-col-sm-8">
+
+					<div class="pi-img-w pi-img-round-corners" style="padding:20px;background:#f1f9f5;border:1px solid #ededed;font-family:Arial;font-height:11px;min-height:280px">
+					  <h3>Profile</h3><br />
+					  <span>Ph: {{ profile.number }}</span><br />
+					  
+					  <input style="border:1px solid #eee;border-radius:3px;height:36px;width:100%;padding:10px;margin-top:20px" ng-model="profile.name" type="text" placeholder="username" /><br />
+					  <input style="border:1px solid #eee;border-radius:3px;height:36px;width:100%;padding:10px;margin-top:20px" ng-model="profile.email" type="text" placeholder="email" /><br />
+					  <button ng-click="update()" class="btn-red" style="margin-top:20px">Update Profile</button>
 					</div>
+				
+			</div>
+			<!-- End col 4 -->
+
+			
+		</div>
+		<!-- End row -->
+
+		        
 					
-					<hr class="pi-divider-gap-50">
-					
-					<h3 class="h4 pi-weight-700 pi-uppercase pi-letter-spacing pi-margin-bottom-25">
-						The Best Delivery Service:
-					</h3>
-					<div class="pi-row">
-						<div class="pi-col-sm-12">
-							Mercury MQ offers the fastest, simplest delivery service out there. No need to download any apps, or hope that your favorite restaurant is listed on a website grub service. We deliver from virtually anywhere. Your courier will receive a text with your order, and will drive to the restaurant immediately to collect the food. You can even order groceries and toiletries from your local supermarket and CVS. Just send a text message with what you want and where you want it from, and we'll dispatch one of our drivers to bring it to your door!
-						</div>
-					</div>
 		  
 		        </div>
 					
@@ -293,24 +266,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="pi-row">
-					
-<form action="/stripe/charge" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_live_8ftaqUCg4JwMMzw0NK6xl3H2"
-    data-label="Add Card"
-    data-amount="0"
-    data-name="Demo Site"
-    data-description="Add Card"
-    data-image="/128x128.png">
-  </script>
-</form>					
-
-
-					</div>
-					
-					
 		          
 		          </div>
 				
@@ -323,99 +278,32 @@
 				<div class="pi-tab-pane" id="team">
 				
 		        <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:20px;background:#fff;font-family:Arial;font-height:11px;min-height:280px">
-					<div style="background:url(../site/img/thumb.gif) no-repeat; background-size: cover;width:100%;height:120px;margin-bottom:20px;background-position:center">
-					  	<div class="pi-section pi-padding-top-10 pi-padding-bottom-10">
-							<div class="pi-row">
-								<h3 class="pi-weight-300" style="color:#fff;line-height:100px">
-									MEET OUR DRIVERS
-								</h3>
-							</div>
-						</div>
+					
+
+					<div class="pi-row" ng-show="profile.stripeId=='none'">
+					
+<form action="/stripe/charge" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_live_8ftaqUCg4JwMMzw0NK6xl3H2"
+    data-label="Add Card"
+    data-amount="0"
+    data-name="Demo Site"
+    data-description="Your card will not be charged."
+    data-image="/128x128.png">
+  </script>
+</form>					
+
 					</div>
 					
-					<hr class="pi-divider pi-divider-dashed">
 
-					<div class="pi-row">
-						<div class="pi-col-sm-3">
-							<div class="pi-img-w pi-img-round-corners pi-img-left pi-margin-top-5" style="width: 155px;">
-								<img class="round-image" src="../site/img/jake.jpg" alt=""/>
-							</div>
-						</div>
-						<div class="pi-col-sm-9">
-							<h3 class="h4 pi-margin-bottom-5">
-								Jake Greenstein
-							</h3>	
-							<p class="pi-italic pi-text-base pi-margin-bottom-10">
-								Montvale, NJ
-							</p>
-							<p style="padding-right:40px">
-								Jake is a sophomore at George Washington University pursuing a B.S. in Finance and Computer Science and a minor in Philosophy. He is a member of the GW Parliamentary Debate Society, as well as the Scholarship chairman and brother of Beta Theta Pi. Jake enjoys Buffalo wings, controversial topics and experimental electronic music.
-								<br><br>
-								Jake loves to order McDonald's when he has a cheat day, or a chicken burrito from El Azteca in Park Ridge.
-							</p>
-							<ul class="pi-social-icons pi-jump pi-colored-bg pi-small pi-round pi-no-margin-bottom clearFix">
-								<li><a href="https://www.facebook.com/jake.a.greenstein" class="pi-social-icon-facebook"><i class="icon-facebook"></i></a></li>
-								<li><a href="#" class="pi-social-icon-twitter"><i class="icon-twitter"></i></a></li>
-								<li><a href="#" class="pi-social-icon-dribbble"><i class="icon-dribbble"></i></a></li>
-							</ul>
-						</div>
-					</div>
+					<div class="pi-row" ng-show="profile.stripeId != 'none'">
+					  {{ profile.cardInfo.brand }}: **{{ profile.cardInfo.lastFour }}
 					
-					<hr class="pi-divider pi-divider-dashed">
 
-					<div class="pi-row">
-						<div class="pi-col-sm-3">
-							<div class="pi-img-w pi-img-round-corners pi-img-left pi-margin-top-5" style="width: 155px;">
-								<img class="round-image" src="../site/img/matt.jpg" alt=""/>
-							</div>
-						</div>
-						<div class="pi-col-sm-9">
-							<h3 class="h4 pi-margin-bottom-5">
-								Matt Colombo
-							</h3>	
-							<p class="pi-italic pi-text-base pi-margin-bottom-10">
-								Woodcliff Lake, NJ
-							</p>
-							<p style="padding-right:40px">
-								Matt is a sophomore at Elon University in North Carolina. He loves lacrosse and spends most of his time at the gym, where he picks things up and puts things down. Matt is a familiar face to many, as he is full-time lifeguard at the Woodcliff Lake town pool at the Old Mill.
-								<br><br>
-								Matt enjoys nothing more than a Dairy Queen blizzard with vanilla ice cream and Reese's cups.
-							</p>
-							<ul class="pi-social-icons pi-jump pi-colored-bg pi-small pi-round pi-no-margin-bottom clearFix">
-								<li><a href="https://www.facebook.com/matt.colombo.14" class="pi-social-icon-facebook"><i class="icon-facebook"></i></a></li>
-								<li><a href="#" class="pi-social-icon-twitter"><i class="icon-twitter"></i></a></li>
-								<li><a href="#" class="pi-social-icon-dribbble"><i class="icon-dribbble"></i></a></li>
-							</ul>
-						</div>
 					</div>
-					
-					<hr class="pi-divider pi-divider-dashed">
 
-					<div class="pi-row">
-						<div class="pi-col-sm-3">
-							<div class="pi-img-w pi-img-round-corners pi-img-left pi-margin-top-5" style="width: 155px;">
-								<img class="round-image" src="../site/img/brett.jpg" alt=""/>
-							</div>
-						</div>
-						<div class="pi-col-sm-9">
-							<h3 class="h4 pi-margin-bottom-5">
-								Brett Karpinos
-							</h3>	
-							<p class="pi-italic pi-text-base pi-margin-bottom-10">
-								Woodcliff Lake, NJ
-							</p>
-							<p style="padding-right:40px">
-								Brett is a sophomore at the University of Michigan's engineering school. Brett and Matt played lacrosse together on the same team in high school, and are both lifeguards at the Old Mill. Brett is also quite the aficionado of early 2000's Nickelodeon cartoons. He played a whale in his first grade play.
-								<br><br>
-								Crunchwrap Supremes from Taco Bell are Brett's kryptonite, and are best paired with a medium Coke and a 4-pack of Cinnabon Delights.
-							</p>
-							<ul class="pi-social-icons pi-jump pi-colored-bg pi-small pi-round pi-no-margin-bottom clearFix">
-								<li><a href="#" class="pi-social-icon-facebook"><i class="icon-facebook"></i></a></li>
-								<li><a href="#" class="pi-social-icon-twitter"><i class="icon-twitter"></i></a></li>
-								<li><a href="#" class="pi-social-icon-dribbble"><i class="icon-dribbble"></i></a></li>
-							</ul>
-						</div>
-					</div>
+
 		        
 		        </div>
 
