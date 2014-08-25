@@ -196,7 +196,7 @@
 		<div class="pi-tabs-vertical pi-responsive-sm">
 			<ul class="pi-tabs-navigation pi-tabs-navigation-transparent" id="myTabs">
 				<li class="pi-active"><a href="#aboutus">Profile</a></li>
-				<li><a href="#howitworks">Order History</a></li>
+				<li><a ng-click="fetchProfileOrders()" href="#orders">Order History</a></li>
 				<li><a href="#team">Billing Info</a></li>
 			</ul>
 			<div class="pi-tabs-content pi-tabs-content-transparent">
@@ -254,18 +254,38 @@
 				<!-- End tab content -->
 				
 				<!-- Tab content -->
-				<div class="pi-tab-pane" id="howitworks">
+				<div class="pi-tab-pane" id="orders">
 				
 		          <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:20px;background:#fff;font-family:Arial;font-height:11px;min-height:280px">
 					<div style="background:url(../site/img/burrito1.jpg) no-repeat; background-size: cover;width:100%;height:120px;margin-bottom:20px">
 					  	<div class="pi-section pi-padding-top-10 pi-padding-bottom-10">
 							<div class="pi-row">
 								<h3 class="pi-weight-300" style="color:#fff;line-height:100px">
-									HOW IT WORKS
+									ORDER HISTORY
 								</h3>
 							</div>
 						</div>
 					</div>
+					
+          		  <table style="font-size:16px;margin-left:auto;margin-right:auto;width:90%" class="table table-striped">
+            		<thead>
+              		  <tr>
+                		<td><strong>Date</strong></td>
+                		<td><strong>Venue</strong></td>
+                        <td><strong>Address</strong></td>
+                        <td><strong>Price</strong></td>
+              		  </tr>
+            		</thead>
+
+            		<tbody>
+              		  <tr ng-repeat="order in profile.orders track by $index">
+                          <td>{{ formattedDate(order.timestamp) }}</td>
+                          <td>{{ order.venue }}</td>
+                          <td>{{ order.address }}</td>
+                          <td>$21.75</td>
+                      </tr>
+            		</tbody>
+          		  </table>
 		          
 		          </div>
 				
