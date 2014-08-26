@@ -1,8 +1,7 @@
 
 var restService = angular.module('restService', []);
 
-restService.factory('restService', ['$http',
-                                    function($http) {
+restService.factory('restService', ['$http', function($http) {
 	
                                               return {
                                                   checkLoggedIn: function(callback) {
@@ -46,7 +45,7 @@ restService.factory('restService', ['$http',
                                             		},
                                                   
                                             	  
-                                                  getResource: function(resource, id, params) {
+                                                  getResource: function(resource, id, params, callback) {
                                                 	  var endpoint = '/api/'+resource;
                                                 	  if (id != null)
                                                 		  endpoint = endpoint+'/'+id;
@@ -61,7 +60,17 @@ restService.factory('restService', ['$http',
                                                 	  }
                                                 	  
                                                 	  console.log('GET RESOURCE: '+endpoint);
-                                                      return $http.get(endpoint); 
+                                                      
+                                                      $http.get(endpoint).success(function(data, status, headers, config) {
+                                                          var results = data['results'];
+                                                    	  callback(results);
+                                                          
+                                                      }).error(function(data, status, headers, config) {
+                                                          console.log("error", data, status, headers, config);
+                                                    	  callback({'error':data});
+                                                      });
+                                                      
+                                                      
                                                   },
                                                   
                                                   postResource: function(resource, object, params) {

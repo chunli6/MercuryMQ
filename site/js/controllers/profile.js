@@ -4,7 +4,6 @@ var profileViewController = angular.module('ProfileViewController', []);
 profileViewController.controller('ProfileViewController', ['$scope', '$http', 'restService', function($scope, $http, restService){
     $scope.loading = false;
     $scope.profile = {};
-    $scope.orders = null;
     $scope.passwordConfirm = '';
     
     $scope.init = function() {
@@ -77,22 +76,31 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
         });
     }
     
-    function fetchProfileOrders(){
-        var url = '/api/deliveryorders?profile='+$scope.profile.id;
-        $http.get(url).success(function(data, status, headers, config) {
-            results = data['results'];
-            confirmation = results['confirmation'];
-            if (confirmation=='success'){
-            	$scope.orders = results['orders'];
-                console.log(JSON.stringify($scope.orders));
-            }
-            else {
-                alert(results['message']);
-            }
+    $scope.fetchProfileOrders = function() {
+    	if ($scope.profile.orders != null)
+    		return;
+    	
+    	console.log('FETCH PROFILE ORDERS');
+    	$scope.loading = true;
+    	
+    	
+    	restService.getResource('deliveryorders', null, {'profile':$scope.profile.id}, function(response) {
+        	$scope.loading = false;
+        	
+        	console.log('RESPONSE: '+JSON.stringify(response));
+        	
+    		if (response.hasOwnProperty('error'))
+    			alert(response.error);
+    		
+    		if (response.hasOwnProperty('deliveryorders'))
+    			$scope.profile.orders = response['deliveryorders'];
+    		
+    		if (response.hasOwnProperty('message')) // user not logged in.
+    			alert(response.message);
 
-        }).error(function(data, status, headers, config) {
-            console.log("error", data, status, headers, config);
-        });
+    	});
+    	
+    	
     }
 
     $scope.getUploadString = function() {
