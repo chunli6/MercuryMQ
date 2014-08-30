@@ -171,8 +171,10 @@
 					Your account gives you easier ordering and a full range of payment options.
 				</p>
 				
-				<input ng-model="profile.number" class="loginInput" type="text" placeholder="email OR phone number (212-555-1234)"><br />
-				<input ng-model="profile.password" class="loginInput" type="password" placeholder="password"><br />
+				<input ng-model="profile.number" class="loginInput" type="text" placeholder="Phone (212-555-1234)"><br />
+				<h4 style="font-family:Brush Script Std;color:#21252C;margin-top:20px;margin-bottom:0px">OR</h4>
+				<input ng-model="profile.email" class="loginInput" type="text" placeholder="Email"><br />
+				<input ng-model="profile.password" class="loginInput" type="password" placeholder="Password"><br />
 				
 				<button ng-click="login()" class="btn-green" style="margin-top:36px;width:160px">Sign In</button>
 				
