@@ -162,31 +162,61 @@
   <div style="background:rgba(230, 230, 230, 0.9);" class="pi-section-w pi-section-white piCounter">
 
 	<div class="pi-section">
-	  <div style="margin-left:auto;margin-right:auto;border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:30px;background:#fff;font-family:Arial;font-height:11px;min-height:280px;width:90%">
+	  <div style="text-align:center">
+	    <h2 style="font-family:Brush Script Std;color:#21252C">Welcome back!</h2>
+		<p style="width:40%;margin-left:auto;margin-right:auto;color:#21252C">
+		  Your account gives you easier ordering and a full range of payment options.
+		</p>
+	    
+	  </div>
+	  
+	  <div style="margin-top:20px;margin-left:auto;margin-right:auto;border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:30px;background:#fff;font-family:Arial;font-height:11px;min-height:280px;width:35%">
 			
 			<!-- Col 12 -->
 			<div class="pi-col-sm-12" style="text-align:center">
-				<h2 style="font-family:Brush Script Std;color:#21252C">Welcome back!</h2>
-				<p style="width:40%;margin-left:auto;margin-right:auto;color:#21252C">
-					Your account gives you easier ordering and a full range of payment options.
-				</p>
+
+				<div class="form-group">
+					<div class="pi-input-with-icon">
+						<div class="pi-input-icon"><i class="icon-phone"></i></div>
+						<input ng-model="profile.number" class="form-control" id="exampleInputEmail" placeholder="Phone (212-555-1234)">
+					</div>
+				</div>
+
+				<h4 style="font-family:Brush Script Std;color:#21252C;margin-top:20px;margin-bottom:0px">OR</h4><br />
+
+				<div class="form-group">
+					<div class="pi-input-with-icon">
+						<div class="pi-input-icon"><i class="icon-mail"></i></div>
+						<input ng-model="profile.email" class="form-control" id="exampleInputEmail" placeholder="Email">
+					</div>
+				</div>
+
+
+					<div class="form-group">
+						<div class="pi-input-with-icon">
+							<div class="pi-input-icon"><i class="icon-lock"></i></div>
+							<input ng-model="profile.password" type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
+						</div>
+					</div>
+					<!-- End password form -->
+
+					<p class="pi-small-text">
+						<a href="#">
+							Forgot password?
+						</a>
+					</p>
 				
-				<input ng-model="profile.number" class="loginInput" type="text" placeholder="Phone (212-555-1234)"><br />
-				<h4 style="font-family:Brush Script Std;color:#21252C;margin-top:20px;margin-bottom:0px">OR</h4>
-				<input ng-model="profile.email" class="loginInput" type="text" placeholder="Email"><br />
-				<input ng-model="profile.password" class="loginInput" type="password" placeholder="Password"><br />
-				
-				<button ng-click="login()" class="btn-green" style="margin-top:36px;width:160px">Sign In</button>
+				<button ng-click="login()" class="btn-green" style="width:160px">Sign In</button>
 				
 			</div>
 			<!-- End col 12 -->
 			
-			<!-- Extra padding -->
-			<div style="height:40px"></div>
-			
 			
 		
 		</div>
+		
+		<div style="height:50px"></div>
+		
 	  </div>
   </div>
 <!-- - - - - - - - - - END SECTION - - - - - - - - - -->
