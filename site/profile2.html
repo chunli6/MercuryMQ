@@ -38,6 +38,7 @@
 	<!--Fonts with Icons-->
 	<link rel="stylesheet" href="../site/3dParty/fontello/css/fontello.css"/>
 	
+	
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
   <script src='../site/js/app.js'></script>
   <script src='../site/services/rest.js'></script>
@@ -45,6 +46,8 @@
   <script src='../site/js/controllers/about.js'></script>
   <script src='../site/js/controllers/profile.js'></script>
   <script src='../site/js/controllers/signin.js'></script>
+
+  <script src="https://checkout.stripe.com/checkout.js"></script>
 
 </head>
 
@@ -54,27 +57,6 @@
     <div class="loading-overlay" ng-show="loading">
       <div spinner spin="loading"></div>
     </div>
-
-<div class="modal fade" id="login" aria-hidden="true">
-  <div class='modal-dialog'>
-    <div class='modal-content'>
-      <div class='modal-header'>
-        <h4 class='modal-title'>Log In</h4>
-      </div>
-      <div class='modal-body' style="text-align:center">
-        <input ng-model="profile.number" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="phone number (ex: 201-555-1234)" /><br /><br />
-        <input ng-model="profile.password" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="password" /><br /><br />
-      </div>
-      <div class='modal-footer'>
-        <button class='btn btn-default' data-dismiss='modal' type='button'>Cancel</button>
-        <button class='btn btn-primary' data-dismiss='modal' type='button' ng-click="login()">Log In</button>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-
 
 <!-- Header -->
 <div class="pi-header">
@@ -113,7 +95,29 @@
 <!-- End text -->
 
 <!-- Menu -->
-<menu></menu>
+<div class="pi-row-block pi-pull-right">
+	<ul class="pi-simple-menu pi-has-hover-border pi-full-height pi-hidden-sm">
+		<li class="active"><a href="/"><span>Home</span></a></li>
+		<li class=""><a href="/site/about"><span>About</span></a></li>
+		<li class="">
+			<a href="/site/faq"><span>FAQ</span></a>
+		</li>
+		<li class="" ng-show="profile.loggedIn=='no'">
+			<a href="#" data-toggle="modal" data-target="#login"><span>Sign Up</span></a>
+ 			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+				<li><a href="/site/signin"><span>Sign In</span></a></li>
+			</ul> 
+			
+		</li>
+		<li class="" ng-show="profile.loggedIn=='yes'" >
+			<a href="/site/profile"><span>{{ profile.name }}</span></a>
+ 			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+				<li><a href="/site/logout"><span>Logout</span></a></li>
+				<li><a href="home-home-2.html"><span>Home 2</span></a></li>
+			</ul> 
+		</li>
+	</ul>
+</div>
 <!-- End menu -->
 
 
@@ -130,10 +134,10 @@
 			<div class="pi-section-menu-mobile">
 
 				<ul class="pi-menu-mobile pi-items-have-borders pi-menu-mobile-dark">
-					<li class="active"><a href="index.html"><span>Home</span></a>
+					<li><a href="docs-docs.html"><span>Docs</span></a>
 						<ul>
-							<li><a href="index.html"><span>Home 1</span></a></li>
-							<li><a href="home-home-2.html"><span>Home 2</span></a></li>
+							<li><a href="docs-theme-structure.html"><span>Theme Structure</span></a></li>
+							<li><a href="docs-theme-settings.html"><span>Theme Settings</span></a></li>
 						</ul>
 					</li>
 				</ul>
@@ -149,180 +153,77 @@
 
 </div>
 <!-- End header -->
+
 <div id="page">
 
 <!-- - - - - - - - - - SECTION - - - - - - - - - -->
 
-<div style="background:rgba(230, 230, 230, 0.9)" class="pi-section-w pi-section-white pi-slider-enabled piSocials">
-	<div class="pi-section pi-padding-bottom-30">
-		
-		<!-- Openings -->
-		<div class="pi-tabs-vertical pi-responsive-sm">
-		
-			<ul class="pi-tabs-navigation pi-tabs-navigation-transparent" id="myTabs">
-				<li class="pi-active"><a href="#aboutus">Profile</a></li>
-				<li><a ng-click="fetchProfileOrders()" href="#orders">Order History</a></li>
-				<li><a href="#team">Billing Info</a></li>
-				<li><a href="#services">Services</a></li>
-			</ul>
+  <div style="background:rgba(230, 230, 230, 0.9)" class="pi-section-w pi-section-white piCounter">
 
-			
-			<div class="pi-tabs-content pi-tabs-content-transparent">
-			
-				<!-- Tab content -->
-				<div class="pi-tab-pane pi-active" id="aboutus">
-				
-		        <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:20px;background:#fff;font-family:Arial;font-height:11px;min-height:280px">
 
+	<!-- Title bar -->
+	<div class="pi-section">
+	
+	
 		<!-- Row -->
 		<div class="pi-row">
-			
-			<!-- Col 3 -->
-			<div class="pi-col-xs-6 pi-col-sm-4">
-
-				<!-- Team member -->
-					<div class="pi-img-w pi-img-round-corners" style="padding:20px;background:#f9f9f9;border:1px solid #ededed;font-family:Arial;font-height:11px;min-height:280px">
-						<img style="border:none;padding-right:10px" src="/site/images/{{profile.image}}" alt="">
-						<form style="margin-top:20px" action="/site/images" method="POST" enctype="multipart/form-data">
+		
+			<!-- Profile Box -->
+			<div class="pi-col-sm-4">
+	  		  <div style="border-radius:1px;background:#fff;font-family:Arial;font-height:11px;min-height:280px;">
+	  		    <div style="background:#f9f9f9;border-bottom:1px solid #eee;padding:20px;text-align:center">
+	  		      <h4>{{ profile.name }}</h4>
+	  		      <img src="/site/images/{{profile.image}}?crop=160" style="width:100px;height:100px;border-radius:50px;border:2px solid #777;margin-top:10px" />
+						<form style="margin-top:10px;" action="/site/images" method="POST" enctype="multipart/form-data">
 						  <input type="file" name="file" />
 						
 						</form>
-					</div>
-				<!-- End team member -->
-				
-			</div>
-			<!-- End col 3 -->
+	  		    </div>
+	  		    
+	  		    <div style="padding:20px">
+	  		      {{ profile.number }}<br />
+	  		      {{ profile.email }}<br /><br />
+	  		      11 ridge avenue<br />
+	  		      Montvale, NJ 07450
+	  		    </div>
+	  		  
+	  		  </div>
 			
-
-			<!-- Col 4 -->
-			<div class="pi-col-xs-6 pi-col-sm-8">
-
-					<div class="pi-img-w pi-img-round-corners" style="padding:20px;background:#f1f9f5;border:1px solid #ededed;font-family:Arial;font-height:11px;min-height:280px">
-					  <h3>Profile</h3><br />
-					  <span>Ph: {{ profile.number }}</span><br />
-					  
-					  <input style="border:1px solid #eee;border-radius:3px;height:36px;width:100%;padding:10px;margin-top:20px" ng-model="profile.name" type="text" placeholder="username" /><br />
-					  <input style="border:1px solid #eee;border-radius:3px;height:36px;width:100%;padding:10px;margin-top:20px" ng-model="profile.email" type="text" placeholder="email" /><br />
-					  <button ng-click="update()" class="btn-red" style="margin-top:20px">Update Profile</button>
-					</div>
-				
-			</div>
-			<!-- End col 4 -->
-
 			
-		</div>
-		<!-- End row -->
-
-		        
-					
-		  
-		        </div>
-					
-				</div>
-				<!-- End tab content -->
-				
-				<!-- Tab content -->
-				<div class="pi-tab-pane" id="orders">
-				
-		          <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:20px;background:#fff;font-family:Arial;font-height:11px;min-height:280px">
-					<div style="background:url(../site/img/burrito1.jpg) no-repeat; background-size: cover;width:100%;height:120px;margin-bottom:20px">
-					  	<div class="pi-section pi-padding-top-10 pi-padding-bottom-10">
-							<div class="pi-row">
-								<h3 class="pi-weight-300" style="color:#fff;line-height:100px">
-									ORDER HISTORY
-								</h3>
-							</div>
-						</div>
-					</div>
-					
-          		  <table style="font-size:16px;margin-left:auto;margin-right:auto;width:90%" class="table table-striped">
-            		<thead>
-              		  <tr>
-                		<td><strong>Date</strong></td>
-                		<td><strong>Venue</strong></td>
-                        <td><strong>Address</strong></td>
-                        <td><strong>Price</strong></td>
-              		  </tr>
-            		</thead>
-
-            		<tbody>
-              		  <tr ng-repeat="order in profile.orders track by $index">
-                          <td>{{ formattedDate(order.timestamp) }}</td>
-                          <td>{{ order.venue }}</td>
-                          <td>{{ order.address }}</td>
-                          <td>$21.75</td>
-                      </tr>
-            		</tbody>
-          		  </table>
-		          
-		          </div>
-				
-					
-					
-				</div>
-				<!-- End tab content -->
-				
-				<!-- Tab content -->
-				<div class="pi-tab-pane" id="team">
-				
-		        <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:20px;background:#fff;font-family:Arial;font-height:11px;min-height:280px">
-					
-
-					<div class="pi-row" ng-show="profile.stripeId=='none'">
-					
-<form action="/stripe/card" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_live_8ftaqUCg4JwMMzw0NK6xl3H2"
-    data-label="Add Card"
-    data-amount="0"
-    data-name="Demo Site"
-    data-description="Your card will not be charged."
-    data-image="/128x128.png">
-  </script>
-</form>					
-
-					</div>
-					
-
-					<div class="pi-row" ng-show="profile.stripeId != 'none'">
-					  {{ profile.cardInfo.brand }}: **{{ profile.cardInfo.lastFour }}
-					
-
-					</div>
-
-
-		        
-		        </div>
-
-				</div>
-				<!-- End tab content -->
-				
-				<!-- Tab content -->
-				<div class="pi-tab-pane" id="services">
-				
-		          <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:20px;background:#fff;font-family:Arial;font-height:11px;min-height:280px">
-					
-					<div class="pi-row">
-					  <h3>Services</h3>
-					
-
-					</div>
-		        
-		          </div>
-
-				</div>
-				<!-- End tab content -->
-
+			
 			</div>
-		</div>
-		<!-- End tabs -->
 		
-	</div>
-</div>
 
+			<div class="pi-col-sm-8">
+	  		  <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:4px 0px 0px 20px;background:#fff;font-family:Arial;font-height:11px;min-height:180px;margin-bottom:20px">
+	    		<h3 style="font-family:Brush Script Std;color:#21252C">My Card</h3>
+	    		
+	    		<div style="text-align:center">
+	    		  You Don't Have a Card Yet.<br /><br />
+				  <button style="width:160px" class="btn-green" id="stripeButton">+ Add Card</button>
+				  <br /><br />					
+	    		</div>
+	  		  
+	  		  </div>
+			
+
+	  		  <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:4px 0px 0px 20px;background:#fff;font-family:Arial;font-height:11px;min-height:280px;">
+	    		<h3 style="font-family:Brush Script Std;color:#21252C">My Order History</h3>
+	  		  
+	  		  </div>
+			
+			
+			</div>
+		
+		
+		</div>
+	  
+	
+	
+    </div>
+  </div>
 <!-- - - - - - - - - - END SECTION - - - - - - - - - -->
-
+</div>
 
 <!-- Footer -->
 
@@ -352,7 +253,7 @@
 <!-- End copyright area -->
 <!-- End footer -->
 
-</div>
+
 
 <script src="../site/3dParty/jquery-1.11.0.min.js"></script>
 <script src="../site/3dParty/gauge.min.js"></script>
@@ -374,6 +275,9 @@
 <script src="../site/js/knob.js"></script>
 <script src="../site/js/spin.js"></script> 
 <script src="../site/js/moment.js"></script>
+<script src="../site/js/stripeHandler.js"></script>
+
+
 
 
 </body>
