@@ -1,4 +1,4 @@
-var app = angular.module('TextAlert', ['restService', 'HomeViewController', 'AboutViewController', 'ProfileViewController']);
+var app = angular.module('TextAlert', ['restService', 'HomeViewController', 'AboutViewController', 'ProfileViewController', 'SigninViewController']);
 
 app.directive('menu', function() {
 	  return {

@@ -37,9 +37,24 @@
 
 	<!--Fonts with Icons-->
 	<link rel="stylesheet" href="../site/3dParty/fontello/css/fontello.css"/>
+	
+	
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+  <script src='../site/js/app.js'></script>
+  <script src='../site/services/rest.js'></script>
+  <script src='../site/js/controllers/home.js'></script>
+  <script src='../site/js/controllers/about.js'></script>
+  <script src='../site/js/controllers/profile.js'></script>
+  <script src='../site/js/controllers/signin.js'></script>
+	
 
 </head>
-<body>
+
+
+<body ng-app="TextAlert" ng-controller="SigninController" ng-init="init();">
+    <div class="loading-overlay" ng-show="loading">
+      <div spinner spin="loading"></div>
+    </div>
 
 
 <!-- Header -->
@@ -89,7 +104,7 @@
 		<li class="">
 			<a href="#" data-toggle="modal" data-target="#login"><span>Sign Up</span></a>
  			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
-				<li><a style="text-align:right" href="/site/signin"><span>Sign In</span></a></li>
+				<li><a href="/site/signin"><span>Sign In</span></a></li>
 			</ul> 
 			
 		</li>
@@ -156,13 +171,16 @@
 					Your account gives you easier ordering and a full range of payment options.
 				</p>
 				
-				<input class="loginInput" type="text" placeholder="email OR phone number (212-555-1234)"><br />
-				<input class="loginInput" type="password" placeholder="password"><br />
+				<input ng-model="profile.number" class="loginInput" type="text" placeholder="email OR phone number (212-555-1234)"><br />
+				<input ng-model="profile.password" class="loginInput" type="password" placeholder="password"><br />
 				
-				<button class="btn-green" style="margin-top:36px;width:160px">Sign In</button>
+				<button ng-click="login()" class="btn-green" style="margin-top:36px;width:160px">Sign In</button>
 				
 			</div>
 			<!-- End col 12 -->
+			
+			<!-- Extra padding -->
+			<div style="height:40px"></div>
 			
 			
 		
@@ -201,13 +219,28 @@
 <!-- End footer -->
 
 
-</div>
 
-<script src="3dParty/jquery-1.11.0.min.js"></script>
-<script src="3dParty/jquery.easing.1.3.js"></script>
-<script src="3dParty/jquery.scrollTo.min.js"></script>
-<script src="3dParty/colorbox/jquery.colorbox-min.js"></script>
-<script src="scripts/pi.global.js"></script>
+<script src="../site/3dParty/jquery-1.11.0.min.js"></script>
+<script src="../site/3dParty/jquery.touchSwipe.min.js"></script>
+<script src="../site/3dParty/gauge.min.js"></script>
+<script src="../site/3dParty/inview.js"></script>
+<script src="../site/3dParty/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+<script src="../site/3dParty/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script src="../site/3dParty/jquery.scrollTo.min.js"></script>
+<script src="../site/3dParty/colorbox/jquery.colorbox-min.js"></script>
+<script src="../site/scripts/pi.global.js"></script>
+<script src="../site/scripts/pi.slider.js"></script>
+<script src="../site/scripts/pi.init.slider.js"></script>
+<script src="../site/3dParty/jquery.easing.1.3.js"></script>
+<script src="../site/scripts/pi.counter.js"></script>
+<script src="../site/scripts/pi.init.counter.js"></script>
+<script src="../site/scripts/pi.parallax.js"></script>
+<script src="../site/scripts/pi.init.parallax.js"></script>
+<script src="../site/scripts/pi.init.revolutionSlider.js"></script>
+<script src="../site/js/knob.js"></script>
+<script src="../site/js/spin.js"></script> 
+<script src="../site/js/moment.js"></script>
+
 
 
 </body>
