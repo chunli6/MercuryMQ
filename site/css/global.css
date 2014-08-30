@@ -10190,3 +10190,62 @@ img {
   -webkit-font-smoothing: antialiased;
 }
 
+
+.btn-green {
+	
+    zoom: 1;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-family:Helvetica;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #ecf0f1;
+    line-height: 1;
+    margin: 0;
+    padding: 13px 25px 11px 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #77cc6d;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+    -webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+
+	border: 1px solid #ccc;
+    border-bottom-color: #bbb;	
+	
+	
+  background-color: hsl(174, 100%, 32%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00ead3", endColorstr="#00a392");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#00ead3), to(#00a392));
+  background-image: -moz-linear-gradient(top, #00ead3, #00a392);
+  background-image: -ms-linear-gradient(top, #00ead3, #00a392);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00ead3), color-stop(100%, #00a392));
+  background-image: -webkit-linear-gradient(top, #00ead3, #00a392);
+  background-image: -o-linear-gradient(top, #00ead3, #00a392);
+  background-image: linear-gradient(#00ead3, #00a392);
+  border-color: #00a392 #00a392 hsl(174, 100%, 28.5%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.23);
+  -webkit-font-smoothing: antialiased;
+}
+
+
+.loginInput {
+	background:#f9f9f9;
+	border:1px solid #eee;
+	border-radius:3px;
+	width:50%;
+	height:36px;
+	margin-top:20px;
+	padding:10px;
+}

@@ -87,7 +87,7 @@
   <div class='modal-dialog'>
     <div class='modal-content'>
       <div class='modal-header'>
-        <h4 class='modal-title'>Log In</h4>
+        <h4 style="color:red;font-family:Brush Script Std" class='modal-title'>Log In</h4>
       </div>
       <div class='modal-body' style="text-align:center">
         <input ng-model="profile.number" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="phone number (ex: 201-555-1234)" /><br /><br />
@@ -141,7 +141,29 @@
 <!-- End text -->
 
 <!-- Menu -->
-<menu></menu>
+<div class="pi-row-block pi-pull-right">
+	<ul class="pi-simple-menu pi-has-hover-border pi-full-height pi-hidden-sm">
+		<li class="active"><a href="/"><span>Home</span></a></li>
+		<li class=""><a href="/site/about"><span>About</span></a></li>
+		<li class="">
+			<a href="/site/faq"><span>FAQ</span></a>
+		</li>
+		<li class="" ng-show="profile.loggedIn=='no'">
+			<a href="#" data-toggle="modal" data-target="#login"><span>Sign Up</span></a>
+ 			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+				<li><a style="text-align:right" href="/site/signin"><span>Sign In</span></a></li>
+			</ul> 
+			
+		</li>
+		<li class="" ng-show="profile.loggedIn=='yes'" >
+			<a href="/site/profile"><span>{{ profile.name }}</span></a>
+ 			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+				<li><a href="/site/logout"><span>Logout</span></a></li>
+				<li><a href="home-home-2.html"><span>Home 2</span></a></li>
+			</ul> 
+		</li>
+	</ul>
+</div>
 <!-- End menu -->
 
 <!-- Mobile menu button -->
