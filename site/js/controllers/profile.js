@@ -12,8 +12,10 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
     		if (response.hasOwnProperty('error'))
     			alert(response.error);
     		
-    		if (response.hasOwnProperty('profile'))
+    		if (response.hasOwnProperty('profile')){
     			$scope.profile = response['profile'];
+    			fetchProfileOrders();
+    		}
     		
     		if (response.hasOwnProperty('message')) // user not logged in.
     			alert(response.message);
@@ -22,6 +24,13 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
     }
     
     
+    $scope.truncatedText = function(string, max) {
+    	if (string.length > max)
+    		return string.substring(0, max)+'...';
+    	
+    	return string;
+    
+    }
 
 
     $scope.capitalize = function(string) {
@@ -79,7 +88,7 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
         });
     }
     
-    $scope.fetchProfileOrders = function() {
+    function fetchProfileOrders() {
     	if ($scope.profile.orders != null)
     		return;
     	

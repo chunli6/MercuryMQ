@@ -248,8 +248,8 @@
             		<tbody>
               		  <tr ng-repeat="order in profile.orders track by $index">
                           <td>{{ formattedDate(order.timestamp) }}</td>
-                          <td>{{ order.venue }}</td>
-                          <td>{{ order.address }}</td>
+                          <td>{{ truncatedText(order.venue, 36) }}</td>
+                          <td>{{ truncatedText(order.address, 36) }}</td>
                           <td>$21.75</td>
                       </tr>
             		</tbody>

@@ -198,17 +198,65 @@
 	  		  <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:4px 0px 0px 20px;background:#fff;font-family:Arial;font-height:11px;min-height:180px;margin-bottom:20px">
 	    		<h3 style="font-family:Brush Script Std;color:#21252C">My Card</h3>
 	    		
-	    		<div style="text-align:center">
+	    		<div style="text-align:center" ng-show="profile.stripeId=='none'">
 	    		  You Don't Have a Card Yet.<br /><br />
 				  <button style="width:160px" class="btn-green" id="stripeButton">+ Add Card</button>
 				  <br /><br />					
 	    		</div>
 	  		  
+	    		<div style="margin-top:20px" ng-show="profile.stripeId!='none'">
+	    		  
+          		  <table style="font-size:16px;width:100%;text-align:center">
+            		<thead>
+              		  <tr>
+                		<td><strong></strong></td>
+                		<td><strong>Type</strong></td>
+                        <td><strong>Num</strong></td>
+                        <td><strong>Exp</strong></td>
+                        <td><strong>Action</strong></td>
+              		  </tr>
+            		</thead>
+
+            		<tbody>
+              		  <tr>
+                          <td><img src="/site/img/cardIcon.png" /></td>
+                          <td>{{ profile.cardInfo.brand }}</td>
+                          <td>xxxx-xxxx-xxxx-{{ profile.cardInfo.lastFour }}</td>
+                          <td>{{ profile.cardInfo.expiration }}</td>
+                          <td><button class="btn-green" id="changeCard">Change</button></td>
+                      </tr>
+            		</tbody>
+          		  </table>
+				  
+				  
+	    		</div>
+
+
 	  		  </div>
 			
 
 	  		  <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,.1);padding:4px 0px 0px 20px;background:#fff;font-family:Arial;font-height:11px;min-height:280px;">
 	    		<h3 style="font-family:Brush Script Std;color:#21252C">My Order History</h3>
+
+          		  <table style="font-size:16px;margin-left:auto;margin-right:auto;width:90%" class="table table-striped">
+            		<thead>
+              		  <tr>
+                		<td><strong>Date</strong></td>
+                		<td><strong>Venue</strong></td>
+                        <td><strong>Address</strong></td>
+                        <td><strong>Price</strong></td>
+              		  </tr>
+            		</thead>
+
+            		<tbody>
+              		  <tr ng-repeat="order in profile.orders track by $index">
+                          <td>{{ formattedDate(order.timestamp) }}</td>
+                          <td>{{ truncatedText(order.venue, 36) }}</td>
+                          <td>{{ truncatedText(order.address, 36) }}</td>
+                          <td>$21.75</td>
+                      </tr>
+            		</tbody>
+          		  </table>
 	  		  
 	  		  </div>
 			
