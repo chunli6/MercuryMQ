@@ -7,8 +7,7 @@
     }
   });
 
-  document.getElementById('stripeButton').addEventListener('click', function(e) {
-    // Open Checkout with further options
+  document.getElementById('stripeButton').addEventListener('click', function(e) { // Open Checkout with further options
     handler.open({
       name: 'Add Card',
       description: 'Your card will NOT be charged',
@@ -16,6 +15,15 @@
     });
     e.preventDefault();
   });
+  
+  document.getElementById('changeCard').addEventListener('click', function(e) { // Open Checkout with further options
+	    handler.open({
+	      name: 'Change Card',
+	      description: 'Your card will NOT be charged',
+	      amount: 0000
+	    });
+	    e.preventDefault();
+	  });
   
   
   function submitToken(token){
@@ -27,13 +35,15 @@
 	  http.open("POST", url, true);
 
 	  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	  http.upload.addEventListener('loadend', function(e) {
-	        // When the request has completed (either in success or failure). Just like 'load', even if the server hasn't 
-	        // responded that it finished processing the request.
-		  
-		  console.log('UPLOAD COMPLETE:');
-		  location.reload();
+	  
+	  // notice that the event handler is on xhr and not xhr.upload
+	  http.addEventListener('readystatechange', function(e) {
+	      if( this.readyState === 4 ) { // the transfer has completed and the server closed the connection.
+			  console.log('UPLOAD COMPLETE:');
+			  location.reload();
+	      }
 	  });
+
 	  
 	  var response = http.send(params);
   }
