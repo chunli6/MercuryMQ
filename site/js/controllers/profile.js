@@ -7,6 +7,10 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
     $scope.profile = {};
     $scope.passwordConfirm = '';
     
+    // orders table
+    $scope.visibleOrders = new Array();
+    $scope.pages = new Array();
+    
     $scope.init = function() {
     	console.log('ProfileController: INIT');
     	restService.checkLoggedIn(function(response) {
@@ -92,15 +96,42 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
     		if (response.hasOwnProperty('error'))
     			alert(response.error);
     		
-    		if (response.hasOwnProperty('deliveryorders'))
+    		if (response.hasOwnProperty('deliveryorders')){
     			$scope.profile.orders = response['deliveryorders'];
+    			
+    			var d = $scope.profile.orders.length / 10;
+    			var numPages = parseInt(d, 10);
+    			if ($scope.profile.orders % 10 != 0)
+    				numPages++;
+    			
+    			for (var i=0; i<numPages; i++)
+    				$scope.pages.push(i);
+    			
+    			
+    			var max = ($scope.profile.orders.length < 10) ? $scope.profile.orders.length : 10;
+    			
+				for (var i=0; i<max; i++){
+					var order = $scope.profile.orders[i];
+					$scope.visibleOrders.push(order);
+				}
+    		}
     		
     		if (response.hasOwnProperty('message')) // user not logged in.
     			alert(response.message);
-
     	});
+    }
+    
+    $scope.viewPage = function(index){
+    	console.log('VIEW PAGE: '+index);
     	
-    	
+    	var start = 10*index;
+    	var ceiling = start+10;
+		var max = (ceiling >= $scope.profile.orders.length) ? $scope.profile.orders.length : ceiling;
+		$scope.visibleOrders = new Array();
+		for (var i=start; i<max; i++){
+			var order = $scope.profile.orders[i];
+			$scope.visibleOrders.push(order);
+		}
     }
 
     $scope.getUploadString = function() {
