@@ -3,6 +3,7 @@ var profileViewController = angular.module('ProfileViewController', []);
 
 profileViewController.controller('ProfileViewController', ['$scope', '$http', 'restService', function($scope, $http, restService){
     $scope.loading = false;
+    $scope.isEditing = false;
     $scope.profile = {};
     $scope.passwordConfirm = '';
     
@@ -23,24 +24,11 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
     	});
     }
     
+    $scope.toggleEditingMode = function(){
+    	console.log('TOGGLE EDITING MODE');
+    	$scope.isEditing = !$scope.isEditing;
+    }
     
-    $scope.truncatedText = function(string, max) {
-    	if (string.length > max)
-    		return string.substring(0, max)+'...';
-    	
-    	return string;
-    
-    }
-
-
-    $scope.capitalize = function(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-    $scope.formattedDate = function(dateStr) {
-    	date = moment(new Date(dateStr)).format('MM/DD/YYYY');
-    	return date;
-    }
     
     $scope.update = function() {
     	if ($scope.profile.number.length < 10){
@@ -72,8 +60,8 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
         var json = JSON.stringify($scope.profile);
         var url = '/api/profile/';
         $http.put(url, json).success(function(data, status, headers, config) {
-            results = data['results'];
-            confirmation = results['confirmation'];
+            var results = data['results'];
+            var confirmation = results['confirmation'];
             if (confirmation=='success'){
             	$scope.profile = results['profile'];
             	$scope.passwordConfirm = '';
@@ -121,10 +109,10 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
 
         var url = '/api/upload?resource=profile&id='+$scope.profile.id;
         $http.get(url).success(function(data, status, headers, config) {
-            results = data['results'];
-            confirmation = results['confirmation'];
+            var results = data['results'];
+            var confirmation = results['confirmation'];
             if (confirmation=='success'){
-            	uploadString = results['upload'];
+            	var uploadString = results['upload'];
                 console.log(uploadString);
 
                 document.getElementById('image-form').action = uploadString;
@@ -137,6 +125,26 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
             console.log("error", data, status, headers, config);
         });
     }
+    
+    
+    $scope.truncatedText = function(string, max) {
+    	if (string.length > max)
+    		return string.substring(0, max)+'...';
+    	
+    	return string;
+    
+    }
+
+
+    $scope.capitalize = function(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    $scope.formattedDate = function(dateStr) {
+    	date = moment(new Date(dateStr)).format('MM/DD/YYYY');
+    	return date;
+    }
+    
 
 
 }]);
