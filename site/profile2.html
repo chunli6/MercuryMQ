@@ -38,14 +38,19 @@
 	<!--Fonts with Icons-->
 	<link rel="stylesheet" href="../site/3dParty/fontello/css/fontello.css"/>
 	
-	
+
+  <script src="http://malsup.github.com/jquery.form.js"></script>
+  <script src="../site/js/fileupload/angular-file-upload-shim.js"></script>
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+  <script src="../site/js/fileupload/angular-file-upload.js"></script>
+  
   <script src='../site/js/app.js'></script>
   <script src='../site/services/rest.js'></script>
   <script src='../site/js/controllers/home.js'></script>
   <script src='../site/js/controllers/about.js'></script>
   <script src='../site/js/controllers/profile.js'></script>
   <script src='../site/js/controllers/signin.js'></script>
+
 
   <script src="https://checkout.stripe.com/checkout.js"></script>
 
@@ -178,6 +183,10 @@
 						  <input type="file" name="file" />
 						
 						</form>
+						<br />
+						
+  			           <div style="width:100%;height:60px;background:red" class="dropZone" ng-file-drop="onFileSelect($files, 'categoryScreen')" ng-file-drag-over-class="optional-css-class">drop image file here</div>
+						
 	  		    </div>
 
 				<div style="text-align:right;padding:10px">

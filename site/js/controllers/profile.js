@@ -1,7 +1,7 @@
-var profileViewController = angular.module('ProfileViewController', []);
+var profileViewController = angular.module('ProfileViewController', ['angularFileUpload']);
 
 
-profileViewController.controller('ProfileViewController', ['$scope', '$http', 'restService', function($scope, $http, restService){
+profileViewController.controller('ProfileViewController', ['$scope', '$http', 'restService', '$upload', function($scope, $http, restService, $upload){
     $scope.loading = false;
     $scope.isEditing = false;
     $scope.profile = {};
@@ -175,6 +175,71 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
     	date = moment(new Date(dateStr)).format('MM/DD/YYYY');
     	return date;
     }
+    
+    
+	$scope.onFileSelect = function($files) {
+	    $scope.loading = true;
+    	console.log('SELECT IMAGE: ');
+        var url = '/api/upload';
+    	
+    	
+        $http.get(url).success(function(data, status, headers, config) {
+            var results = data['results'];
+            if (results['confirmation']=='success'){
+            	var uploadString = results['upload'];
+                console.log('UPLOAD STRING: '+uploadString);
+                
+            	
+                //$files: an array of files selected, each file has name, size, and type.
+                for (var i = 0; i < $files.length; i++) {
+                  var file = $files[i];
+                  $scope.upload = $upload.upload({
+                    url: uploadString, //upload.php script, node.js route, or servlet url
+                    method: 'POST',
+                    // headers: {'header-key': 'header-value'},
+                    // withCredentials: true,
+                    data: {myObj: $scope.myModelObj},
+                    file: file // or list of files: $files for html5 only
+                    /* set the file formData name ('Content-Desposition'). Default is 'file' */
+                    //fileFormDataName: myFile, //or a list of names for multiple files (html5).
+                    /* customize how data is added to formData. See #40#issuecomment-28612000 for sample code */
+                    //formDataAppender: function(formData, key, val){}
+                  }).progress(function(evt) {
+                    console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                  }).success(function(data, status, headers, config) { // file is uploaded successfully
+                    console.log(data);
+                    var results = data['results'];
+                    
+					$scope.loading = false;
+                    var confirmation = results['confirmation'];
+                    if (confirmation=='success'){
+                    	console.log(JSON.stringify(results));
+                    	
+                    }
+                    else{
+                    	alert(results['message']);
+                    }
+                  });
+                  //.error(...)
+                  //.then(success, error, progress); 
+                  //.xhr(function(xhr){xhr.upload.addEventListener(...)})// access and attach any event listener to XMLHttpRequest.
+                }
+                
+                /* alternative way of uploading, send the file binary with the file's content-type.
+                   Could be used to upload files to CouchDB, imgur, etc... html5 FileReader is needed. 
+                   It could also be used to monitor the progress of a normal http post/put request with large data*/
+                // $scope.upload = $upload.http({...})  see 88#issuecomment-31366487 for sample code.
+            }
+            else {
+        	    $scope.loading = false;
+                alert(results['message']);
+            }
+        }).error(function(data, status, headers, config) {
+    	    $scope.loading = false;
+            console.log("error", data, status, headers, config);
+        });
+      };
+    
     
 
 
