@@ -214,6 +214,8 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
                     var confirmation = results['confirmation'];
                     if (confirmation=='success'){
                     	console.log(JSON.stringify(results));
+                    	var image = results['image'];
+                    	$scope.profile.image = image['id'];
                     	
                     }
                     else{
