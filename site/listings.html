@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<title>Mercury MQ</title>
+	
+	<link rel="shortcut icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../site/css/global.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/3dParty/colorbox/colorbox.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/typo.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/accordion.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/tooltips.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/shadows.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/tabs.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/portfolio.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/testimonials.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/social.css"/>
+	<link rel="stylesheet" type="text/css" href="../site/css/counters.css"/>
+
+	<!-- JQUERY -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<!-- BOOTSTRAP -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<!--Fonts-->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
+
+	<!--Fonts with Icons-->
+	<link rel="stylesheet" href="../site/3dParty/fontello/css/fontello.css"/>
+	
+
+  <script src="https://malsup.github.com/jquery.form.js"></script>
+  <script src="../site/js/fileupload/angular-file-upload-shim.js"></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js'></script>
+  <script src="../site/js/fileupload/angular-file-upload.js"></script>
+  
+  <script src='../site/js/app.js'></script>
+  <script src='../site/services/rest.js'></script>
+  <script src='../site/js/controllers/home.js'></script>
+  <script src='../site/js/controllers/about.js'></script>
+  <script src='../site/js/controllers/profile.js'></script>
+  <script src='../site/js/controllers/signin.js'></script>
+  <script src='../site/js/controllers/listings.js'></script>
+
+
+
+</head>
+
+
+
+<body ng-app="TextAlert" ng-controller="ListingsViewController" ng-init="init();">
+    <div class="loading-overlay" ng-show="loading">
+      <div spinner spin="loading"></div>
+    </div>
+
+<!-- Header -->
+<div class="pi-header">
+
+<!-- Header row -->
+<div class="pi-section-w pi-section-dark">
+	<div class="pi-section pi-row-sm">
+
+		<!-- Social icons -->
+		<div class="pi-row-block pi-pull-right pi-hidden-2xs">
+			<ul class="pi-social-icons pi-stacked pi-jump pi-full-height pi-bordered pi-small pi-colored-bg clearFix">
+				<li><a target="_blank" href="https://www.twitter.com/mercurymq" class="pi-social-icon-twitter"><i class="icon-twitter"></i></a></li>
+				<li><a target="_blank" href="https://www.facebook.com/MercuryMQ" class="pi-social-icon-facebook"><i class="icon-facebook"></i></a></li>
+				<li><a target="_blank" href="https://instagram.com/mercurymq201" class="pi-social-icon-instagram"><i class="icon-instagram"></i></a></li>
+			</ul>
+		</div>
+		<!-- End social icons -->
+
+	</div>
+</div>
+<!-- End header row -->
+
+<div class="pi-header-sticky">
+<!-- Header row -->
+<div class="pi-section-w pi-section-white pi-shadow-bottom pi-row-reducible">
+<div class="pi-section pi-row-lg">
+
+<!-- Logo -->
+<div class="pi-row-block pi-row-block-logo">
+	<a href="/"><img src="../site/img/logos/logo_copy.png" alt=""></a>
+</div>
+<!-- End logo -->
+
+<!-- Text -->
+<div class="pi-row-block pi-row-block-txt pi-hidden-2xs"></div>
+<!-- End text -->
+
+<!-- Menu -->
+<div class="pi-row-block pi-pull-right">
+	<ul class="pi-simple-menu pi-has-hover-border pi-full-height pi-hidden-sm">
+		<li class="active"><a href="/"><span>Home</span></a></li>
+		<li class=""><a href="/site/about"><span>About</span></a></li>
+		<li class="">
+			<a href="/site/faq"><span>FAQ</span></a>
+		</li>
+		<li class="" ng-show="profile.loggedIn=='no'">
+			<a href="#" data-toggle="modal" data-target="#login"><span>Sign Up</span></a>
+ 			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+				<li><a href="/site/signin"><span>Sign In</span></a></li>
+			</ul> 
+			
+		</li>
+		<li class="" ng-show="profile.loggedIn=='yes'" >
+			<a href="/site/profile"><span>{{ profile.name }}</span></a>
+ 			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+				<li><a href="/site/logout"><span>Logout</span></a></li>
+				<li><a href="home-home-2.html"><span>Home 2</span></a></li>
+			</ul> 
+		</li>
+	</ul>
+</div>
+<!-- End menu -->
+
+
+<!-- Mobile menu button -->
+<div class="pi-row-block pi-pull-right pi-hidden-lg-only pi-hidden-md-only">
+	<button class="btn pi-btn pi-mobile-menu-toggler" data-target="#pi-main-mobile-menu">
+		<i class="icon-menu pi-text-center"></i>
+	</button>
+</div>
+<!-- End mobile menu button -->
+
+		<!-- Mobile menu -->
+		<div id="pi-main-mobile-menu" class="pi-section-menu-mobile-w pi-section-dark">
+			<div class="pi-section-menu-mobile">
+
+				<ul class="pi-menu-mobile pi-items-have-borders pi-menu-mobile-dark">
+					<li><a href="docs-docs.html"><span>Docs</span></a>
+						<ul>
+							<li><a href="docs-theme-structure.html"><span>Theme Structure</span></a></li>
+							<li><a href="docs-theme-settings.html"><span>Theme Settings</span></a></li>
+						</ul>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+		<!-- End mobile menu -->
+
+</div>
+</div>
+<!-- End header row -->
+</div>
+
+</div>
+<!-- End header -->
+
+<div id="page">
+
+<!-- - - - - - - - - - SECTION - - - - - - - - - -->
+
+  <div style="background:rgba(230, 230, 230, 0.9)" class="pi-section-w pi-section-white piCounter">
+
+
+	<!-- Title bar -->
+	<div class="pi-section">
+	
+	
+		<!-- Row -->
+		<div class="pi-row">
+		
+			<!-- Profile Box -->
+			<div class="pi-col-sm-4">
+	  		  <div style="border-radius:1px;background:#fff;font-family:Arial;font-height:11px;min-height:280px;">
+	  		    <div style="background:#f9f9f9;border-bottom:1px solid #eee;padding:20px;text-align:center">
+	  		      <h4>{{ profile.name }}</h4>
+	  		      <img src="/site/images/{{profile.image}}?crop=160" style="width:100px;height:100px;border-radius:50px;border:2px solid #777;margin-top:10px" />
+						<br /><br />
+	  		    </div>
+
+				<div style="text-align:right;padding:10px">
+	  		      <a ng-if="isEditing==true" ng-click="toggleEditingMode()" style="text-decoration:none" href="">Cancel</a>
+	  		      <a ng-if="isEditing==false" ng-click="toggleEditingMode()" style="text-decoration:none" href="">Edit</a>
+				</div>
+	  		    
+ 	  		    <div style="padding:20px">
+	  		      NAME: {{ profile.name }}<br />
+	  		      PHONE: {{ profile.number }}<br />
+	  		      EMAIL: {{ profile.email }}<br /><br />
+	  		    </div>
+
+
+	  		  </div>
+			
+			
+			
+			</div>
+		
+
+			<div class="pi-col-sm-8">
+
+	  		  <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,0.1);padding:4px 0px 0px 0px;background:#fff;font-family:Arial;font-height:11px;min-height:280px;">
+	    		<h3 style="font-family:Brush Script Std;color:#21252C;margin-left:20px">My Order History</h3>
+
+          		  <table style="font-size:16px;margin-left:auto;margin-right:auto;width:90%" class="table table-striped">
+            		<thead>
+              		  <tr>
+                		<td><strong>Date</strong></td>
+                		<td><strong>Venue</strong></td>
+                        <td><strong>Address</strong></td>
+                        <td><strong>Price</strong></td>
+              		  </tr>
+            		</thead>
+
+            		<tbody>
+              		  <tr ng-repeat="order in visibleOrders track by $index">
+                          <td>{{ formattedDate(order.timestamp) }}</td>
+                          <td>{{ truncatedText(order.venue, 36) }}</td>
+                          <td>{{ truncatedText(order.address, 36) }}</td>
+                          <td>$21.75</td>
+                      </tr>
+            		</tbody>
+          		  </table>
+          		  
+          		  <div style="text-align:center;padding:10px;width:100%;border-top:1px solid #eee;background:#f9f9f9;border-bottom-left-radius:3px;border-bottom-right-radius:3px;">
+          		    <a ng-repeat="page in pages track by $index" style="margin-left:20px" href="" ng-click="viewPage($index)">Page {{ page+1 }}</a>
+          		  </div>
+	  		  
+	  		  </div>
+			
+			</div>
+			
+			
+		
+		
+		</div>
+	  
+	
+	
+    </div>
+  </div>
+<!-- - - - - - - - - - END SECTION - - - - - - - - - -->
+</div>
+
+<!-- Footer -->
+
+<!-- Copyright area -->
+<div class="pi-section-w pi-section-dark pi-border-top-light ">
+	<div class="pi-section pi-row-lg pi-center-text-2xs pi-clearfix">
+
+		<!-- Social icons -->
+		<div class="pi-row-block pi-pull-right pi-hidden-2xs">
+			<ul class="pi-social-icons-simple pi-small clearFix">
+				<li><a target="_blank" href="https://www.facebook.com/MercuryMQ" href="#" class="pi-social-icon-facebook"><i class="icon-facebook"></i></a></li>
+				<li><a target="_blank" href="https://www.twitter.com/mercurymq" href="#" class="pi-social-icon-twitter"><i class="icon-twitter"></i></a></li>
+				<li><a target="_blank" href="https://instagram.com/mercurymq201" href="#" class="pi-social-icon-instagram"><i class="icon-instagram"></i></a></li>
+			</ul>
+		</div>
+		<!-- End social icons -->
+
+
+		<!-- Text -->
+		<span class="pi-row-block pi-row-block-txt pi-hidden-xs">&copy; 2014, The Grid Media, LLC.
+			All right reserved.
+		</span>
+		<!-- End text -->
+
+	</div>
+</div>
+<!-- End copyright area -->
+<!-- End footer -->
+
+
+
+<script src="../site/3dParty/jquery-1.11.0.min.js"></script>
+<script src="../site/3dParty/gauge.min.js"></script>
+<script src="../site/3dParty/inview.js"></script>
+<script src="../site/3dParty/jquery.scrollTo.min.js"></script>
+<script src="../site/3dParty/colorbox/jquery.colorbox-min.js"></script>
+<script src="../site/scripts/pi.global.js"></script>
+<script src="../site/scripts/pi.accordion.js"></script>
+<script src="../site/scripts/pi.tooltip.js"></script>
+<script src="../site/scripts/pi.init.tooltip.js"></script>
+<script src="../site/3dParty/jquery.easing.1.3.js"></script>
+<script src="../site/scripts/pi.counter.js"></script>
+<script src="../site/scripts/pi.init.counter.js"></script>
+<script src="../site/scripts/pi.tab.js"></script>
+<script src="../site/scripts/pi.init.tab.js"></script>
+<script src="../site/scripts/pi.parallax.js"></script>
+<script src="../site/scripts/pi.init.parallax.js"></script>
+<script src="../site/scripts/pi.init.revolutionSlider.js"></script>
+<script src="../site/js/knob.js"></script>
+<script src="../site/js/spin.js"></script> 
+<script src="../site/js/moment.js"></script>
+
+
+
+
+</body>
+</html>
