@@ -282,8 +282,23 @@
 	  		  </div>
 			
 
-	  		  <div style="border-radius:3px;box-shadow:0 0 3px 1px rgba(0,0,0,.05), 0 1px 2px 0px rgba(0,0,0,0.1);padding:4px 0px 0px 0px;background:#fff;font-family:Arial;font-height:11px;min-height:280px;">
-	    		<h3 style="font-family:Brush Script Std;color:#21252C;margin-left:20px">My Order History</h3>
+	  		  
+	  		  
+	  		  
+		<!-- Tabs navigation -->
+		<ul class="pi-tabs-navigation pi-responsive-sm" id="myTabs" style="margin-top:20px">
+			<li class="pi-active"><a href="#About"><i class="icon-users"></i>Orders</a></li>
+			<li><a href="#Services"><i class="icon-cog"></i>Tasks</a></li>
+		</ul>
+		<!-- End tabs navigation -->
+		
+		<!-- Tabs content -->
+		<div class="pi-tabs-content pi-tabs-content-shadow" style="padding:0px;min-height:280px;">
+			
+			<!-- Tabs content item -->
+			<div class="pi-tab-pane pi-active" id="About">
+			
+	    		<h3 style="font-family:Brush Script Std;color:#21252C;margin-left:44px;margin-top:44px">My Order History</h3>
 
           		  <table style="font-size:16px;margin-left:auto;margin-right:auto;width:90%" class="table table-striped">
             		<thead>
@@ -308,8 +323,115 @@
           		  <div style="text-align:center;padding:10px;width:100%;border-top:1px solid #eee;background:#f9f9f9;border-bottom-left-radius:3px;border-bottom-right-radius:3px;">
           		    <a ng-repeat="page in pages track by $index" style="margin-left:20px" href="" ng-click="viewPage($index)">Page {{ page+1 }}</a>
           		  </div>
+				
+				
+			</div>
+			<!-- End tabs content item -->
+			
+			<!-- Tabs content item -->
+			<div class="pi-tab-pane" id="Services" style="padding:24px">
+	    		<h3 style="font-family:Brush Script Std;color:#21252C;margin-left:20px">My Tasks</h3>
+	    		<br />
+				
+				<!-- Services -->
+				<div class="pi-row">
+			
+					<!-- Service -->
+					<div class="pi-col-sm-6">
+						<div class="pi-icon-box">
+							<div class="pi-icon-box-icon pi-icon-box-icon-square pi-icon-box-icon-base" style="background: #ee7954;">
+								<i class="icon-monitor"></i>
+							</div>
+							<div class="pi-icon-box-content-2">
+								<h4>
+									Website Design
+								</h4>
+								<p>
+									Wurpis venenatis at laoreet consectetur, adipisci velit, sed quia non numquam
+								</p>
+								<hr class="pi-divider-gap-10">
+							</div>
+						</div>
+					</div>
+					<!-- End service -->
+					
+					<!-- Service -->
+					<div class="pi-col-sm-6">
+						<div class="pi-icon-box">
+							<div class="pi-icon-box-icon pi-icon-box-icon-square pi-icon-box-icon-base" style="background: #f06793;">
+								<i class="icon-pencil"></i>
+							</div>
+							<div class="pi-icon-box-content-2">
+								<h4>
+									Branding &amp; Graphics
+								</h4>
+								<p>
+									Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit
+								</p>
+								<hr class="pi-divider-gap-10">
+							</div>
+						</div>
+					</div>
+					<!-- End service -->
+					
+					
+				</div>
+				<!-- End services -->
+				
+				<!-- Services -->
+				<div class="pi-row">
+		
+					<!-- Service -->
+					<div class="pi-col-sm-6">							
+						<div class="pi-icon-box">
+							<div class="pi-icon-box-icon pi-icon-box-icon-square pi-icon-box-icon-base" style="background: #ab71bd;">
+								<i class="icon-doc-text"></i>
+							</div>
+							<div class="pi-icon-box-content-2">
+								<h4>
+									Content Management
+								</h4>
+								<p>
+									Wurpis venenatis at laoreet consectetur, adipisci velit, sed quia non numquam
+								</p>
+								<hr class="pi-divider-gap-10">
+							</div>
+						</div>
+					</div>
+					<!-- End service -->
+					
+					<!-- Service -->
+					<div class="pi-col-sm-6">
+						<div class="pi-icon-box">
+							<div class="pi-icon-box-icon pi-icon-box-icon-square pi-icon-box-icon-base" style="background: #54aaee;">
+								<i class="icon-basket"></i>
+							</div>
+							<div class="pi-icon-box-content-2">
+								<h4>
+									Ecommerce
+								</h4>
+								<p>
+									Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit
+								</p>
+								<hr class="pi-divider-gap-10">
+							</div>
+						</div>
+					</div>
+					<!-- End service -->
+					
+					
+				</div>
+				<!-- End services -->
+				
+			</div>
+			<!-- End tabs content item -->
+			
+			
+			
+		</div>
+		<!-- End tabs content -->
 	  		  
-	  		  </div>
+	  		  
 			
 			</div>
 			
