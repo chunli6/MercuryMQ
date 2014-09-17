@@ -288,7 +288,7 @@
 		<!-- Tabs navigation -->
 		<ul class="pi-tabs-navigation pi-responsive-sm" id="myTabs" style="margin-top:20px">
 			<li class="pi-active"><a href="#About"><i class="icon-users"></i>Orders</a></li>
-			<li><a href="#Services"><i class="icon-cog"></i>Tasks</a></li>
+			<li><a ng-click="fetchProfileTasks()" href="#Services"><i class="icon-cog"></i>Tasks</a></li>
 		</ul>
 		<!-- End tabs navigation -->
 		
@@ -334,90 +334,92 @@
 	    		<br />
 				
 				<!-- Services -->
-				<div class="pi-row">
+				<div ng-show="profile.tasks==null || profile.tasks.length==0" class="pi-row">
 			
 					<!-- Service -->
-					<div class="pi-col-sm-6">
+					<div class="pi-col-sm-12">
 						<div class="pi-icon-box">
 							<div class="pi-icon-box-icon pi-icon-box-icon-square pi-icon-box-icon-base" style="background: #ee7954;">
 								<i class="icon-monitor"></i>
 							</div>
 							<div class="pi-icon-box-content-2">
 								<h4>
-									Website Design
+									What Are Tasks?
 								</h4>
 								<p>
-									Wurpis venenatis at laoreet consectetur, adipisci velit, sed quia non numquam
+									Tasks are an easy way to take care of errands from your phone. By simply texting a task to Mercury, you can have items delivered to your location conveniently once a week. Need light bulbs, batteries, and paper towels? Send a task to Mercury. Running low on dishwasher soap or shampoo? Submit a task to Mercury.<br /><br />
+									There is no need to sign up or register - just starting texting Mercury with tasks right away and we will deliver your items each Saturday!
 								</p>
+								<br />
 								<hr class="pi-divider-gap-10">
 							</div>
 						</div>
 					</div>
 					<!-- End service -->
 					
-					<!-- Service -->
-					<div class="pi-col-sm-6">
-						<div class="pi-icon-box">
-							<div class="pi-icon-box-icon pi-icon-box-icon-square pi-icon-box-icon-base" style="background: #f06793;">
-								<i class="icon-pencil"></i>
-							</div>
-							<div class="pi-icon-box-content-2">
-								<h4>
-									Branding &amp; Graphics
-								</h4>
-								<p>
-									Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit
-								</p>
-								<hr class="pi-divider-gap-10">
-							</div>
-						</div>
-					</div>
-					<!-- End service -->
 					
 					
 				</div>
 				<!-- End services -->
 				
 				<!-- Services -->
-				<div class="pi-row">
+				<div ng-show="profile.tasks==null || profile.tasks.length==0" class="pi-row">
 		
 					<!-- Service -->
-					<div class="pi-col-sm-6">							
+					<div class="pi-col-sm-12">							
 						<div class="pi-icon-box">
 							<div class="pi-icon-box-icon pi-icon-box-icon-square pi-icon-box-icon-base" style="background: #ab71bd;">
 								<i class="icon-doc-text"></i>
 							</div>
 							<div class="pi-icon-box-content-2">
 								<h4>
-									Content Management
+									How It Works
 								</h4>
 								<p>
-									Wurpis venenatis at laoreet consectetur, adipisci velit, sed quia non numquam
+									To submit a task, text <span style="color:red">201-345-4820</span> with the following format:<br /><br />
+									1. Your location<br />
+									2. The item(s) you want delivered<br />
+									<br />
+									Each Saturday, between 4pm and 8pm, we will deliver the items to your location specified in the text message.
 								</p>
+								<br />
 								<hr class="pi-divider-gap-10">
 							</div>
 						</div>
 					</div>
 					<!-- End service -->
 					
+					
+					
+				</div>
+				<!-- End services -->
+
+				<!-- Services -->
+				<div ng-show="profile.tasks==null || profile.tasks.length==0" class="pi-row">
+		
 					<!-- Service -->
-					<div class="pi-col-sm-6">
+					<div class="pi-col-sm-12">							
 						<div class="pi-icon-box">
-							<div class="pi-icon-box-icon pi-icon-box-icon-square pi-icon-box-icon-base" style="background: #54aaee;">
-								<i class="icon-basket"></i>
+							<div class="pi-icon-box-icon pi-icon-box-icon-square pi-icon-box-icon-base" style="background: #ab71bd;">
+								<i class="icon-doc-text"></i>
 							</div>
 							<div class="pi-icon-box-content-2">
 								<h4>
-									Ecommerce
+									Pricing
 								</h4>
 								<p>
-									Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit
+								    Pricing is based on the total value of the items delivered on each drop off. The fee structure is as follows:<br />
+									<br />
+									&#149; $5 for items whose total cost is up to $30<br />
+									&#149; $2 additional for each $10 increment above $30<br />
+									<br />
+									For example, if your items costs $25, the fee would be $5. If your items costs $25, the fee would be $7 and so on.
 								</p>
-								<hr class="pi-divider-gap-10">
 							</div>
 						</div>
 					</div>
 					<!-- End service -->
+					
 					
 					
 				</div>

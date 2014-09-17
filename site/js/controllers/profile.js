@@ -87,7 +87,6 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
     	console.log('FETCH PROFILE ORDERS');
     	$scope.loading = true;
     	
-    	
     	restService.getResource('deliveryorders', null, {'profile':$scope.profile.id}, function(response) {
         	$scope.loading = false;
         	
@@ -114,12 +113,38 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
 					var order = $scope.profile.orders[i];
 					$scope.visibleOrders.push(order);
 				}
+				
     		}
     		
     		if (response.hasOwnProperty('message')) // user not logged in.
     			alert(response.message);
     	});
     }
+    
+    $scope.fetchProfileTasks = function(){
+    	if ($scope.profile.tasks != null)
+    		return;
+    	
+    	console.log('FETCH PROFILE TASKS');
+    	$scope.loading = true;
+    	restService.getResource('tasks', null, {'profile':$scope.profile.id}, function(response) {
+        	$scope.loading = false;
+        	
+        	console.log('RESPONSE: '+JSON.stringify(response));
+        	
+    		if (response.hasOwnProperty('error'))
+    			alert(response.error);
+    		
+    		if (response.hasOwnProperty('tasks')){
+    			$scope.profile.tasks = response['tasks'];
+    		}
+    		
+    		if (response.hasOwnProperty('message')) // user not logged in.
+    			alert(response.message);
+    	});
+    	
+    }
+
     
     $scope.viewPage = function(index){
     	console.log('VIEW PAGE: '+index);
