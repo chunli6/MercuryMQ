@@ -134,36 +134,11 @@ profileViewController.controller('ProfileViewController', ['$scope', '$http', 'r
 		}
     }
 
-    $scope.getUploadString = function() {
-    	console.log('Get Upload String');
-        $scope.loading = true;
-
-        var url = '/api/upload?resource=profile&id='+$scope.profile.id;
-        $http.get(url).success(function(data, status, headers, config) {
-            var results = data['results'];
-            var confirmation = results['confirmation'];
-            if (confirmation=='success'){
-            	var uploadString = results['upload'];
-                console.log(uploadString);
-
-                document.getElementById('image-form').action = uploadString;
-                document.getElementById('image-form').submit();
-            }
-            else {
-                alert(results['message']);
-            }
-        }).error(function(data, status, headers, config) {
-            console.log("error", data, status, headers, config);
-        });
-    }
-    
-    
     $scope.truncatedText = function(string, max) {
     	if (string.length > max)
     		return string.substring(0, max)+'...';
     	
     	return string;
-    
     }
 
 
