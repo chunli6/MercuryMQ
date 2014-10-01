@@ -50,6 +50,7 @@
   <script src='../site/js/controllers/about.js'></script>
   <script src='../site/js/controllers/profile.js'></script>
   <script src='../site/js/controllers/signin.js'></script>
+  <script src='../site/js/controllers/signup.js'></script>
   <script src='../site/js/controllers/listings.js'></script>
 	
 
@@ -121,8 +122,9 @@
 			<a href="/site/faq"><span>FAQ</span></a>
 		</li>
 		<li class="" ng-show="profile.loggedIn=='no'">
-			<a href="#" data-toggle="modal" data-target="#login"><span>Sign Up</span></a>
+			<a href="/site/signup"><span>Sign Up</span></a>
  			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+				<li><a href="/site/signup"><span>Register</span></a></li>
 				<li><a href="/site/signin"><span>Sign In</span></a></li>
 			</ul> 
 			

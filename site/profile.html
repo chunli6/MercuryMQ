@@ -50,6 +50,7 @@
   <script src='../site/js/controllers/about.js'></script>
   <script src='../site/js/controllers/profile.js'></script>
   <script src='../site/js/controllers/signin.js'></script>
+  <script src='../site/js/controllers/signup.js'></script>
   <script src='../site/js/controllers/listings.js'></script>
 
 
@@ -306,7 +307,7 @@
                 		<td><strong>Date</strong></td>
                 		<td><strong>Venue</strong></td>
                         <td><strong>Address</strong></td>
-                        <td><strong>Price</strong></td>
+                        <td><strong>Delivery Fee</strong></td>
               		  </tr>
             		</thead>
 
@@ -315,7 +316,7 @@
                           <td>{{ formattedDate(order.timestamp) }}</td>
                           <td>{{ truncatedText(order.venue, 36) }}</td>
                           <td>{{ truncatedText(order.address, 36) }}</td>
-                          <td>$21.75</td>
+                          <td>$7.00</td>
                       </tr>
             		</tbody>
           		  </table>

@@ -47,6 +47,7 @@
   <script src='../site/js/controllers/about.js'></script>
   <script src='../site/js/controllers/profile.js'></script>
   <script src='../site/js/controllers/signin.js'></script>
+  <script src='../site/js/controllers/signup.js'></script>
   <script src='../site/js/controllers/listings.js'></script>
 
 </head>
@@ -89,24 +90,6 @@
 </div>
 
 
-<div class="modal fade" id="login" aria-hidden="true">
-  <div class='modal-dialog'>
-    <div class='modal-content'>
-      <div class='modal-header'>
-        <h4 style="color:red;font-family:Brush Script Std" class='modal-title'>Log In</h4>
-      </div>
-      <div class='modal-body' style="text-align:center">
-        <input ng-model="profile.number" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="phone number (ex: 201-555-1234)" /><br /><br />
-        <input ng-model="profile.password" style="width:90%;border:1px solid #ededed;height:36px;border-radius:4px;background:#f9f9f9;padding:5px" type="text" placeholder="password" /><br /><br />
-      </div>
-      <div class='modal-footer'>
-        <button class='btn btn-default' data-dismiss='modal' type='button'>Cancel</button>
-        <button class='btn btn-primary' data-dismiss='modal' type='button' ng-click="login()">Log In</button>
-      </div>
-    </div>
-  </div>
-
-</div>
 
 
 <!-- Header -->
@@ -155,8 +138,9 @@
 			<a href="/site/faq"><span>FAQ</span></a>
 		</li>
 		<li class="" ng-show="profile.loggedIn=='no'">
-			<a href="#" data-toggle="modal" data-target="#login"><span>Sign Up</span></a>
+			<a href="/site/signup"><span>Sign Up</span></a>
  			<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+				<li><a href="/site/signup"><span>Register</span></a></li>
 				<li><a href="/site/signin"><span>Sign In</span></a></li>
 			</ul> 
 			
@@ -376,7 +360,7 @@
 					</div>
 					<h5 class="pi-weight-700 pi-uppercase pi-letter-spacing"><a href="#" class="pi-link-dark">Delivery</a></h5>
 					<p class="pi-margin-bottom-10">
-						Have you ever wanted food delivered from a restaurant that doesn't deliver? MercuryMQ will deliver food directly to your door from select local restaurants. Simply text your order, your address, and the restaurant that you would like to order from to 201-383-4611 and we will deliver your food. MercuryMQ Delivery costs only $7 per order, and your first order is free!
+						Have you ever wanted food delivered from a restaurant that doesn't deliver? MercuryMQ will deliver food directly to your door from select local restaurants. Simply text your order, your address, and the restaurant that you would like to order from to 201-383-4611 and we will deliver your food. MercuryMQ Delivery costs only $7 per order for orders up to $30.
 					</p>
 				</div>
 			</div>

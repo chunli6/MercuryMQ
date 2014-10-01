@@ -57,7 +57,7 @@
 </head>
 
 
-<body ng-app="TextAlert" ng-controller="SigninController" ng-init="init();">
+<body ng-app="TextAlert" ng-controller="SignupViewController" ng-init="init();">
     <div class="loading-overlay" ng-show="loading">
       <div spinner spin="loading"></div>
     </div>
@@ -169,7 +169,7 @@
 
 	<div class="pi-section">
 	  <div style="text-align:center">
-	    <h2 style="font-family:Brush Script Std;color:#21252C">Welcome back!</h2>
+	    <h2 style="font-family:Brush Script Std;color:#21252C">Sign Up</h2>
 		<p style="width:40%;margin-left:auto;margin-right:auto;color:#21252C">
 		  Your account gives you easier ordering and a full range of payment options.
 		</p>
@@ -180,6 +180,13 @@
 			
 			<!-- Col 12 -->
 			<div class="pi-col-sm-12" style="text-align:center">
+			
+				<div class="form-group">
+					<div class="pi-input-with-icon">
+						<div class="pi-input-icon"><i class="icon-user"></i></div>
+						<input ng-model="profile.name" class="form-control" id="exampleInputEmail" placeholder="Name">
+					</div>
+				</div>
 
 				<div class="form-group">
 					<div class="pi-input-with-icon">
@@ -187,6 +194,8 @@
 						<input ng-model="profile.number" class="form-control" id="exampleInputEmail" placeholder="Phone (212-555-1234)">
 					</div>
 				</div>
+
+
 
 <!-- 				<h4 style="font-family:Brush Script Std;color:#21252C;margin-top:20px;margin-bottom:0px">OR</h4><br />
 
@@ -200,19 +209,14 @@
 
 					<div class="form-group">
 						<div class="pi-input-with-icon">
-							<div class="pi-input-icon"><i class="icon-lock"></i></div>
-							<input ng-model="profile.password" type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
+						<div class="pi-input-icon"><i class="icon-mail"></i></div>
+							<input ng-model="profile.email" type="text" class="form-control" id="exampleInputPassword" placeholder="Email">
 						</div>
 					</div>
 					<!-- End password form -->
 
-					<p class="pi-small-text">
-						<a href="#">
-							Forgot password?
-						</a>
-					</p>
 				
-				<button ng-click="login()" class="btn-green" style="width:160px">Sign In</button>
+				<button ng-click="register()" class="btn-green" style="width:160px">Register</button>
 				
 			</div>
 			<!-- End col 12 -->
